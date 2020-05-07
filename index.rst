@@ -13,46 +13,6 @@ Below are a number of examples meant to familiarize you with the functionality o
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="In this example, we demonstrate how to compute the mutual inductance between two sets of polyli...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_line_conductor_example_thumb.png
-
-     :ref:`sphx_glr_auto_examples_line_conductor_example.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/line_conductor_example
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="In this example, we demonstrate how to compute the mutual inductance between two sets of polyli...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_line_conductor_inductance_thumb.png
-
-     :ref:`sphx_glr_auto_examples_line_conductor_inductance.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/line_conductor_inductance
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="Minimal example visualizing the gradient of a scalar function on a mesh">
 
 .. only:: html
@@ -90,6 +50,26 @@ Below are a number of examples meant to familiarize you with the functionality o
    :hidden:
 
    /auto_examples/interpolate_example
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example, we demonstrate how to compute the mutual inductance between two sets of polyli...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_line_conductor_inductance_thumb.png
+
+     :ref:`sphx_glr_auto_examples_line_conductor_inductance.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/line_conductor_inductance
 
 .. raw:: html
 

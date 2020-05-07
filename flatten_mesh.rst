@@ -61,137 +61,57 @@ section 7.4.
         return A
 
 
-    mesh = load_example_mesh("meg_helmet", process=False)
-
-    N = mesh.vertices.shape[0]
-
-    L = laplacian_matrix(mesh)
-    M = mass_matrix(mesh)
-    Ac = A_matrix_complex(mesh)
-    # lambda <= 1.0
-    # if lambda == 1.0 => conformal mapping
-    # if lambda == 0.5 =>  not conformal but less area distortion
-    # if lambda > 1 (e.g. 1.01-1.1) weird folding effects
-    _lambda = 0.5
-    vals, uv = eigsh(-0.5 * L.T - _lambda * Ac, 6, M, which="LM", sigma=0)
-
-    # Coordinates with initial phase
-    u = uv[:, 1].real
-    v = uv[:, 1].imag
-
-    # Determine "phase" by matching the uv coordinate function with mesh coordinates
-    theta = np.linspace(0, 2 * np.pi, 50)
-    yy = np.imag(np.exp(1j * theta)[:, None] * uv[:, 1])
-    # plt.plot(np.sum(mesh.vertices[:,0]*xx, axis=1))
-    ii = np.argmax(np.sum(mesh.vertices[:, 1] * yy, axis=1))
-
-    theta = theta[ii]
-    u = np.real(np.exp(1j * theta) * uv[:, 1])
-    v = np.imag(np.exp(1j * theta) * uv[:, 1])
-
-
-
-
-
-
-
-
-.. code-block:: default
-
-    from mayavi import mlab
-    from bfieldtools.viz import plot_data_on_vertices, plot_mesh, plot_data_on_faces
-
-    plot_data_on_vertices(mesh, u, ncolors=15)
-    plot_data_on_vertices(mesh, v, ncolors=15)
-
-
-
-
-.. rst-class:: sphx-glr-horizontal
-
-
-    *
-
-      .. image:: /auto_examples/images/sphx_glr_flatten_mesh_001.png
-            :class: sphx-glr-multi-img
-
-    *
-
-      .. image:: /auto_examples/images/sphx_glr_flatten_mesh_002.png
-            :class: sphx-glr-multi-img
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    <mayavi.modules.surface.Surface object at 0x7f50c16624d0>
-
-
-
-
-.. code-block:: default
-
-    mesh2d = trimesh.Trimesh(np.array([u, v, 0 * u]).T, mesh.faces, process=False)
-    plot_data_on_faces(mesh2d, mesh2d.area_faces / mesh.area_faces)
-
-
-
-
-.. image:: /auto_examples/images/sphx_glr_flatten_mesh_003.png
-    :class: sphx-glr-single-img
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    <mayavi.modules.surface.Surface object at 0x7f50c16d4d10>
-
-
-
-
-.. code-block:: default
-
-    from bfieldtools.mesh_calculus import gradient
-
-    gx = gradient(u, mesh)
-    gy = gradient(v, mesh)
-    cos = np.sum(gx * gy, axis=0) / (
-        np.linalg.norm(gx, axis=0) * np.linalg.norm(gy, axis=0)
-    )
-    plot_data_on_faces(mesh, cos, vmin=-1, vmax=1)
-    mlab.quiver3d(*mesh.triangles_center.T, *gx, color=(1, 0, 0), mode="arrow")
-    mlab.quiver3d(*mesh.triangles_center.T, *gy, color=(0, 0, 1), mode="arrow")
-
-
-
-
-.. image:: /auto_examples/images/sphx_glr_flatten_mesh_004.png
-    :class: sphx-glr-single-img
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    <mayavi.modules.vectors.Vectors object at 0x7f50c117e710>
-
-
-
-
-.. code-block:: default
-
-    import trimesh
+    def flatten_mesh(mesh, _lambda=1.0):
+        """ Flatten the mesh, return uv coordinates and the mesh in 2D  
+
+        Parameters
+        ----------
+        mesh : Trimesh object 
+            must have boundary
+        _lambda : int <= 1.0
+            parameter for trading of area-distortion/angle-preservation. 
+            The default is 1.0
+
+        Returns
+        -------
+        u : array
+            first coordinate of the paramterization
+        v : array
+            second coordinate of the paramterization
+        mesh2d : Trimesh object with coordinates (u,v,0)
+
+        lambda <= 1.0
+        if lambda == 1.0 => conformal mapping
+        if lambda == 0.5 =>  not conformal but less area distortion
+        if lambda > 1 (e.g. 1.01-1.1) weird folding effects
+        """
+
+        N = mesh.vertices.shape[0]
+
+        L = laplacian_matrix(mesh)
+        M = mass_matrix(mesh)
+        Ac = A_matrix_complex(mesh)
+        vals, uv = eigsh(-0.5 * L.T - _lambda * Ac, 6, M, which="LM", sigma=0)
+
+        # Coordinates with initial phase
+        u = uv[:, 1].real
+        v = uv[:, 1].imag
+
+        # Determine "phase" by matching the uv coordinate function with mesh coordinates
+        theta = np.linspace(0, 2 * np.pi, 50)
+        yy = np.imag(np.exp(1j * theta)[:, None] * uv[:, 1])
+        # plt.plot(np.sum(mesh.vertices[:,0]*xx, axis=1))
+        ii = np.argmax(np.sum(mesh.vertices[:, 1] * yy, axis=1))
+
+        theta = theta[ii]
+        u = np.real(np.exp(1j * theta) * uv[:, 1])
+        v = np.imag(np.exp(1j * theta) * uv[:, 1])
+
+        mesh2d = trimesh.Trimesh(np.array([u, v, 0 * u]).T, mesh.faces, process=False)
+        return u, v, mesh2d
+
+
+    # Map points from 2D to 3D or vice versa
 
 
     def mesh2plane(points3d, mesh, u, v):
@@ -232,6 +152,102 @@ section 7.4.
 
 .. code-block:: default
 
+    from mayavi import mlab
+    from bfieldtools.viz import plot_data_on_vertices, plot_mesh, plot_data_on_faces
+
+    mesh = load_example_mesh("meg_helmet", process=False)
+    u, v, mesh2d = flatten_mesh(mesh, _lambda=1.0)
+
+    plot_data_on_vertices(mesh, u, ncolors=15)
+    plot_data_on_vertices(mesh, v, ncolors=15)
+
+
+
+
+.. rst-class:: sphx-glr-horizontal
+
+
+    *
+
+      .. image:: /auto_examples/images/sphx_glr_flatten_mesh_001.png
+            :class: sphx-glr-multi-img
+
+    *
+
+      .. image:: /auto_examples/images/sphx_glr_flatten_mesh_002.png
+            :class: sphx-glr-multi-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    <mayavi.modules.surface.Surface object at 0x7f63f83a4830>
+
+
+
+
+.. code-block:: default
+
+    plot_data_on_faces(mesh2d, mesh2d.area_faces / mesh.area_faces)
+
+
+
+
+.. image:: /auto_examples/images/sphx_glr_flatten_mesh_003.png
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    <mayavi.modules.surface.Surface object at 0x7f637fc1aa70>
+
+
+
+
+.. code-block:: default
+
+    from bfieldtools.mesh_calculus import gradient
+
+    gx = gradient(u, mesh)
+    gy = gradient(v, mesh)
+    cos = np.sum(gx * gy, axis=0) / (
+        np.linalg.norm(gx, axis=0) * np.linalg.norm(gy, axis=0)
+    )
+    plot_data_on_faces(mesh, cos, vmin=-1, vmax=1)
+    mlab.quiver3d(*mesh.triangles_center.T, *gx, color=(1, 0, 0), mode="arrow")
+    mlab.quiver3d(*mesh.triangles_center.T, *gy, color=(0, 0, 1), mode="arrow")
+
+
+
+
+
+.. image:: /auto_examples/images/sphx_glr_flatten_mesh_004.png
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    <mayavi.modules.vectors.Vectors object at 0x7f637fc00110>
+
+
+
+
+.. code-block:: default
+
     d = np.sqrt(3 / 4)
     m = np.min((u.min(), v.min()))
     mm = np.min((u.max(), v.max()))
@@ -260,14 +276,14 @@ section 7.4.
  .. code-block:: none
 
 
-    <mayavi.modules.glyph.Glyph object at 0x7f50c17c4fb0>
+    <mayavi.modules.glyph.Glyph object at 0x7f637fd4fa10>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.502 seconds)
+   **Total running time of the script:** ( 0 minutes  1.405 seconds)
 
 
 .. _sphx_glr_download_auto_examples_flatten_mesh.py:
