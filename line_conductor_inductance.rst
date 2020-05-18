@@ -28,6 +28,12 @@ In this example, we demonstrate how to compute the mutual inductance between two
     from mayavi import mlab
 
 
+
+
+
+
+
+
 We create a set of wire loops by picking a single (arbitrary) surface-harmonic mode
 from a plane mesh.  Finally, we discretize the  mode into a set of wire loops, which we plot.
 
@@ -53,6 +59,26 @@ from a plane mesh.  Finally, we discretize the  mode into a set of wire loops, w
 
 
 
+
+
+.. image:: /auto_examples/images/sphx_glr_line_conductor_inductance_001.png
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Calculating surface harmonics expansion...
+    Computing the laplacian matrix...
+    Computing the mass matrix...
+
+    <mayavi.core.scene.Scene object at 0x7fa208a59e90>
+
+
+
 Now, we create a shifted copy of the wire loops, and the calculate the
 mutual_inductance between two sets of line conductors
 
@@ -69,6 +95,15 @@ mutual_inductance between two sets of line conductors
 
     Mself = c.line_mutual_inductance(c, separate_loops=True, radius=1e-3)
     M2 = c.line_mutual_inductance(c2, separate_loops=True)
+
+
+
+
+.. image:: /auto_examples/images/sphx_glr_line_conductor_inductance_002.png
+    :class: sphx-glr-single-img
+
+
+
 
 
 Now, we plot the inductance matrices
@@ -88,6 +123,15 @@ Now, we plot the inductance matrices
     plt.title("Mutual inductance matrix between the sets of wire loops")
 
     ff.tight_layout()
+
+
+
+
+.. image:: /auto_examples/images/sphx_glr_line_conductor_inductance_003.png
+    :class: sphx-glr-single-img
+
+
+
 
 
 The inductance derived from the continous current density
@@ -113,11 +157,32 @@ The inductance derived from the continous current density
     print("Inductance based on r=1mm wire", np.sum(Mself))
 
 
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Computing the inductance matrix...
+    Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
+    Estimating 2432 MiB required for 676 by 676 vertices...
+    Computing inductance matrix in 20 chunks (7537 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing triangle-coupling matrix
+    Inductance matrix computation took 0.90 seconds.
+    Inductance based on the continuous current density 8.689344781849715e-05
+    Inductance based on r=1mm wire 9.793656583088348e-05
+
+
+
+
+
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
+   **Total running time of the script:** ( 0 minutes  5.811 seconds)
 
-**Estimated memory usage:**  0 MB
+**Estimated memory usage:**  134 MB
 
 
 .. _sphx_glr_download_auto_examples_line_conductor_inductance.py:

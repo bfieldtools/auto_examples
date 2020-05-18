@@ -33,11 +33,8 @@ Spherical harmonics B-field computation validation
     l = 7 computed
     l = 8 computed
     l = 9 computed
-    l = 10 computed
-    l = 11 computed
-    l = 12 computed
-    Computing magnetic field coupling matrix, 676 vertices by 676 target points... took 0.12 seconds.
-    Relative RMS error 2.396064326392903
+    Computing magnetic field coupling matrix, 676 vertices by 676 target points... took 0.13 seconds.
+    Relative RMS error 0.5606404914507133
 
 
 
@@ -77,7 +74,7 @@ Spherical harmonics B-field computation validation
     test_points = coilmesh.vertices.copy()
     test_points[:, 1] = 0
 
-    lmax = 12
+    lmax = 9
 
 
     sph_C = compute_sphcoeffs_mesh(coil.mesh, lmax)
@@ -115,7 +112,9 @@ Spherical harmonics B-field computation validation
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  55.504 seconds)
+   **Total running time of the script:** ( 0 minutes  31.796 seconds)
+
+**Estimated memory usage:**  71 MB
 
 
 .. _sphx_glr_download_auto_examples_validation_spherical_harmonics_bfield_validation.py:

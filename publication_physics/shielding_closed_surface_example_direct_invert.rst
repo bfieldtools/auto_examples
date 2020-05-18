@@ -30,11 +30,9 @@ Design a field of a closed enclosed in a volume
     from bfieldtools.mesh_magnetics import scalar_potential_coupling as compute_U
     from bfieldtools.mesh_impedance import mutual_inductance_matrix
     from bfieldtools.contour import scalar_contour
-    from bfieldtools.viz import plot_3d_current_loops
-    from bfieldtools.sphtools import compute_sphcoeffs_mesh
-    from bfieldtools.suhtools import SuhBasis
     from bfieldtools import sphtools
     from bfieldtools.utils import load_example_mesh
+    from bfieldtools.mesh_calculus import mass_matrix
 
     # domain = 'sphere'
     # domain = 'cube'
@@ -59,8 +57,6 @@ Design a field of a closed enclosed in a volume
         mesh1 = filter_laplacian(mesh1)
         mesh2 = filter_laplacian(mesh2, 0.9)
     elif domain == "combined":
-        import trimesh
-        import pkg_resources
         from trimesh.creation import icosphere
 
         mesh1 = icosphere(4, 0.65)
@@ -71,14 +67,14 @@ Design a field of a closed enclosed in a volume
 
     coil1 = MeshConductor(
         mesh_obj=mesh1,
-        N_sph=7,
+        N_sph=3,
         inductance_nchunks=100,
         fix_normals=False,
         inductance_quad_degree=2,
     )
     coil2 = MeshConductor(
         mesh_obj=mesh2,
-        N_sph=7,
+        N_sph=3,
         inductance_nchunks=100,
         fix_normals=False,
         inductance_quad_degree=2,
@@ -119,32 +115,37 @@ Design a field of a closed enclosed in a volume
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Computing triangle-coupling matrix
-    Inductance matrix computation took 11.40 seconds.
+    Inductance matrix computation took 11.24 seconds.
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Computing triangle-coupling matrix
-    Inductance matrix computation took 11.39 seconds.
+    Inductance matrix computation took 10.85 seconds.
     Estimating 24888 MiB required for 2665 by 2562 vertices...
-    Computing inductance matrix in 60 chunks (10661 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 80 chunks (7249 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Computing magnetic field coupling matrix analytically, 2562 vertices by 10000 target points... took 35.74 seconds.
-    Computing magnetic field coupling matrix analytically, 2665 vertices by 10000 target points... took 36.15 seconds.
-    Computing scalar potential coupling matrix, 2562 vertices by 10000 target points... took 31.22 seconds.
-    Computing scalar potential coupling matrix, 2665 vertices by 10000 target points... took 32.54 seconds.
+    Computing magnetic field coupling matrix analytically, 2562 vertices by 10000 target points... took 36.94 seconds.
+    Computing magnetic field coupling matrix analytically, 2665 vertices by 10000 target points... took 34.74 seconds.
+    Computing scalar potential coupling matrix, 2562 vertices by 10000 target points... took 30.08 seconds.
+    Computing scalar potential coupling matrix, 2665 vertices by 10000 target points... took 33.09 seconds.
 
 
 
 
 suh = SuhBasis(mesh1, 100)
 
+b10 = mesh1.vertex_normals[:, 0]
+b20 = (
+    mesh1.vertex_normals[:, 0] * mesh1.vertices[:, 0]
+    - mesh1.vertex_normals[:, 1] * mesh1.vertices[:, 1]
+)
+
 
 .. code-block:: default
 
-    b1 = mesh1.vertex_normals[:, 0]
-    b2 = (
-        mesh1.vertex_normals[:, 0] * mesh1.vertices[:, 0]
-        - mesh1.vertex_normals[:, 1] * mesh1.vertices[:, 1]
-    )
+    N = mass_matrix(mesh1, lumped=True)
+    af, bf = sphtools.basis_fields(mesh1.vertices, 2)
+    b1 = N @ np.sum(bf[:, :, 2] * mesh1.vertex_normals, axis=1)
+    b2 = N @ np.sum(bf[:, :, 3] * mesh1.vertex_normals, axis=1)
 
 
     def plot_plane(opacity=0.8):
@@ -219,7 +220,7 @@ suh = SuhBasis(mesh1, 100)
 
         #    fig = plot_3d_current_loops(contours1, tube_radius=0.005, colors=(1,1,1))
         surf = mlab.triangular_mesh(
-            *mesh1.vertices.T, mesh1.faces, scalars=I1, colormap="seismic"
+            *mesh1.vertices.T, mesh1.faces, scalars=I1, colormap="BrBG"
         )
         surf.actor.mapper.interpolate_scalars_before_mapping = True
         surf.module_manager.scalar_lut_manager.number_of_colors = 16
@@ -233,7 +234,7 @@ suh = SuhBasis(mesh1, 100)
             *(mesh2.vertices * 0.99).T,
             faces2_masked,
             scalars=I2,
-            colormap="seismic",
+            colormap="BrBG",
             opacity=1.0
         )
         surf.actor.mapper.interpolate_scalars_before_mapping = True
@@ -317,7 +318,9 @@ suh = SuhBasis(mesh1, 100)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  48.179 seconds)
+   **Total running time of the script:** ( 2 minutes  51.349 seconds)
+
+**Estimated memory usage:**  4324 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_physics_shielding_closed_surface_example_direct_invert.py:

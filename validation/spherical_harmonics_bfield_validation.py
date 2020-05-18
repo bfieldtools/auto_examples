@@ -33,7 +33,7 @@ weights[coil.inner_vertices] = 1
 test_points = coilmesh.vertices.copy()
 test_points[:, 1] = 0
 
-lmax = 12
+lmax = 9
 
 
 sph_C = compute_sphcoeffs_mesh(coil.mesh, lmax)

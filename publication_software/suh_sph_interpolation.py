@@ -11,9 +11,11 @@ import trimesh
 import matplotlib.pyplot as plt
 
 from bfieldtools.sphtools import basis_fields as sphfield
+from bfieldtools.sphtools import field as sph_field_eval
 from bfieldtools.sphtools import basis_potentials, potential
 import mne
 
+from bfieldtools.viz import plot_data_on_vertices, plot_mesh
 
 #%%
 SAVE_DIR = "./MNE interpolation/"
@@ -62,7 +64,7 @@ R = np.min(np.linalg.norm(p, axis=1)) - 0.02
 
 #%%
 
-lmax = 9  # maximum degree
+lmax = 7  # maximum degree
 Bca, Bcb = sphfield(p, lmax, normalization="energy", R=R)
 
 # sph-components at sensors
@@ -82,7 +84,7 @@ Bcb_sensors = np.einsum("ijk,ij->ik", Bcb, n)
 # evoked1.plot_topomap(times=0.080, ch_type="mag", colorbar=False)
 
 #%% calculate inner sph-coeffients with pinv
-PINV = False
+PINV = True
 if PINV:
     alpha = np.linalg.pinv(Bca_sensors, rcond=1e-15) @ field
 else:
@@ -169,23 +171,120 @@ surf.module_manager.scalar_lut_manager.number_of_colors = 16
 # evoked1.data[:, :] = np.tile(reco_suh.T, (evoked.times.shape[0], 1)).T
 # evoked1.plot_topomap(times=0.080, ch_type="mag")
 
-
 #%% Plot spectra
-plt.figure()
-plt.plot(alpha ** 2)
+fig, ax = plt.subplots(1, 1)
+ax.plot(alpha ** 2)
+
+
+L = np.zeros((0,))
+M = np.zeros((0,))
+
+
+for l in range(1, lmax + 1):
+    m_l = np.arange(-l, l + 1, step=1, dtype=np.int_)
+    M = np.append(M, m_l)
+    L = np.append(L, np.repeat(l, len(m_l)))
+
+xticknames = [None] * len(alpha)
+for i in range(len(alpha)):
+    xticknames[i] = str(M[i])
+
+    m_l = np.arange(-L[i], L[i] + 1, step=1)
+
+    if i == int(np.floor(len(m_l))):
+        xticknames[i] += "\n" + str(L[i])
+
 
 plt.figure()
 plt.plot(a ** 2)
 
 
-#%% Compute potential
-U_sph = potential(
-    p, alpha, np.zeros(alpha.shape), lmax=lmax, normalization="energy", R=R
+#%% Compute potential on the helmet mesh
+from bfieldtools.utils import load_example_mesh
+from bfieldtools.flatten_mesh import flatten_mesh, mesh2plane
+
+helmet = load_example_mesh("meg_helmet", process=False)
+# Bring the surface roughly to the correct place
+helmet.vertices[:, 2] -= 0.045
+# The helmet is slightly tilted, correct for this
+# (probably the right coordinate transformation could be found from MNE)
+rotmat = np.eye(3)
+tt = 0.015 * np.pi
+rotmat[:2, :2] = np.array([[np.cos(tt), np.sin(tt)], [-np.sin(tt), np.cos(tt)]])
+helmet.vertices = helmet.vertices @ rotmat
+tt = -0.02 * np.pi
+rotmat[1:, 1:] = np.array([[np.cos(tt), np.sin(tt)], [-np.sin(tt), np.cos(tt)]])
+helmet.vertices = helmet.vertices @ rotmat
+helmet.vertices[:, 1] += 0.005
+
+# plot_mesh(helmet)
+# mlab.points3d(*p.T, scale_factor=0.01)
+
+
+B_sph_helmet = sph_field_eval(
+    helmet.vertices,
+    alpha,
+    np.zeros(alpha.shape),
+    lmax=lmax,
+    normalization="energy",
+    R=R,
+)
+B_sph_helmet = np.einsum("ij,ij->i", B_sph_helmet, helmet.vertex_normals)
+B_suh_helmet = c.B_coupling(helmet.vertices) @ s
+B_suh_helmet = np.einsum("ij,ij->i", B_suh_helmet, helmet.vertex_normals)
+
+#%% Compute flattened mesh
+
+
+u, v, helmet2d = flatten_mesh(helmet, 0.9)
+puv = mesh2plane(p, helmet, u, v)
+
+
+#%% Magnetic field at sensor array surface
+
+from scipy.interpolate import Rbf
+
+rbf_f = Rbf(puv[:, 0], puv[:, 1], field, function="linear", smooth=0)
+rbf_field = rbf_f(helmet2d.vertices[:, 0], helmet2d.vertices[:, 1])
+
+
+vmin = -7e-13
+vmax = 7e-13
+f = plot_data_on_vertices(helmet2d, rbf_field, ncolors=15, vmin=vmin, vmax=vmax)
+mlab.points3d(puv[:, 0], puv[:, 1], 0 * puv[:, 0], scale_factor=0.1, color=(0, 0, 0))
+f.scene.z_plus_view()
+mlab.savefig(SAVE_DIR + "rbf_helmet_B.png", figure=f, magnification=4)
+
+suh_field = (
+    np.einsum("ijk,ij->ik", c.B_coupling(helmet.vertices), helmet.vertex_normals) @ s
 )
 
-U_suh = c.U_coupling(p) @ a
 
-#%% MNE interpolates using SPHERICAL HEAD MODEL
+f = plot_data_on_vertices(helmet2d, suh_field, ncolors=15, vmin=vmin, vmax=vmax)
+mlab.points3d(puv[:, 0], puv[:, 1], 0 * puv[:, 0], scale_factor=0.1, color=(0, 0, 0))
+f.scene.z_plus_view()
+mlab.savefig(SAVE_DIR + "suh_helmet_B.png", figure=f, magnification=4)
+
+
+Bca, Bcb = sphfield(helmet.vertices, lmax, normalization="energy", R=R)
+
+# sph-components at sensors
+sph_field = np.einsum("ijk,ij->ik", Bca, helmet.vertex_normals) @ alpha
+
+
+f = plot_data_on_vertices(helmet2d, sph_field, ncolors=15, vmin=vmin, vmax=vmax)
+mlab.points3d(puv[:, 0], puv[:, 1], 0 * puv[:, 0], scale_factor=0.1, color=(0, 0, 0))
+f.scene.z_plus_view()
+mlab.savefig(SAVE_DIR + "sph_helmet_B.png", figure=f, magnification=4)
+
+#%% MNE interpolates using splines or something
+#%% Compute potential
+# U_sph = potential(
+# p, alpha, np.zeros(alpha.shape), lmax=lmax, normalization="energy", R=R
+# )
+#
+# U_suh = c.U_coupling(p) @ s
+
 # evoked1 = evoked.copy()
 # evoked1.data[:, :] = np.tile(U_sph.T, (evoked.times.shape[0], 1)).T
 # evoked1.plot_topomap(times=0.080, ch_type="mag")
@@ -224,8 +323,7 @@ U_sph = potential(
 )
 
 #%%
-from bfieldtools.viz import plot_data_on_vertices
-from bfieldtools.viz import plot_mesh
+
 
 # Mask inside/outside using solid angle
 mask = abs(c.U_coupling.matrix.sum(axis=1)) < 1e-6

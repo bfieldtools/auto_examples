@@ -66,7 +66,7 @@ Plot Ylms up to l = 4
 
 
 
-Plot vector spherical harmonics Vlms / Wlms on the sphere
+Plot vector spherical harmonics Vlms / Wlms / Xlms on the sphere
 
 
 .. code-block:: default
@@ -82,6 +82,12 @@ Plot vector spherical harmonics Vlms / Wlms on the sphere
     obj = sphtools.plotWlm(sph, l=2, m=2)
     obj.scene.z_plus_view()
 
+    # Plot Xlm with the same order and degree, l=2, m=2
+    mlab.figure(bgcolor=(1, 1, 1))
+    obj = sphtools.plotXlm(sph, l=2, m=2)
+    obj.scene.z_plus_view()
+
+
 
 
 
@@ -96,6 +102,11 @@ Plot vector spherical harmonics Vlms / Wlms on the sphere
     *
 
       .. image:: /auto_examples/images/sphx_glr_spherical_harmonics_example_004.png
+            :class: sphx-glr-multi-img
+
+    *
+
+      .. image:: /auto_examples/images/sphx_glr_spherical_harmonics_example_005.png
             :class: sphx-glr-multi-img
 
 
@@ -126,12 +137,12 @@ Plot fields of vector spherical harmonics Vlms / Wlms on a volume
 
     *
 
-      .. image:: /auto_examples/images/sphx_glr_spherical_harmonics_example_005.png
+      .. image:: /auto_examples/images/sphx_glr_spherical_harmonics_example_006.png
             :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /auto_examples/images/sphx_glr_spherical_harmonics_example_006.png
+      .. image:: /auto_examples/images/sphx_glr_spherical_harmonics_example_007.png
             :class: sphx-glr-multi-img
 
 
@@ -156,16 +167,24 @@ Test inner products in quadrature points defined in sph-object
     )
 
     Vlm1 = sphtools.Vlm(1, 0, sph.sqp[:, 1], sph.sqp[:, 2])
-    Vlm2 = sphtools.Vlm(7, 0, sph.sqp[:, 1], sph.sqp[:, 2])
-    print("Inner product between V_10 and V_70 is %f" % sph.innerproduct(Vlm1, Vlm2))
+    Vlm2 = sphtools.Vlm(2, 0, sph.sqp[:, 1], sph.sqp[:, 2])
+    print("Inner product between V_10 and V_20 is %f" % sph.innerproduct(Vlm1, Vlm2))
     print("Inner product between V_10 and V_10 is %f" % sph.innerproduct(Vlm1, Vlm1))
 
     Wlm1 = sphtools.Wlm(1, 0, sph.sqp[:, 1], sph.sqp[:, 2])
-    Wlm2 = sphtools.Wlm(7, 0, sph.sqp[:, 1], sph.sqp[:, 2])
-    print("Inner product between W_10 and W_70 is %f" % sph.innerproduct(Wlm1, Wlm2))
+    Wlm2 = sphtools.Wlm(2, 0, sph.sqp[:, 1], sph.sqp[:, 2])
+    print("Inner product between W_10 and W_20 is %f" % sph.innerproduct(Wlm1, Wlm2))
     print("Inner product between W_10 and W_10 is %f" % sph.innerproduct(Wlm1, Wlm1))
 
+    Xlm1 = sphtools.Xlm(1, 0, sph.sqp[:, 1], sph.sqp[:, 2])
+    Xlm2 = sphtools.Xlm(2, 0, sph.sqp[:, 1], sph.sqp[:, 2])
+    print("Inner product between X_10 and X_20 is %f" % sph.innerproduct(Xlm1, Xlm2))
+    print("Inner product between X_10 and X_10 is %f" % sph.innerproduct(Xlm1, Xlm1))
+
     print("Inner product between W_10 and V_10 is %f" % sph.innerproduct(Wlm1, Vlm1))
+    print("Inner product between X_10 and V_10 is %f" % sph.innerproduct(Xlm1, Vlm1))
+    print("Inner product between X_10 and W_10 is %f" % sph.innerproduct(Xlm1, Vlm1))
+
 
 
 
@@ -179,11 +198,15 @@ Test inner products in quadrature points defined in sph-object
 
     Inner product between Ylm_20 and Ylm_21 is 0.000000
     Inner product between Ylm_20 and Ylm_20 is 1.000000
-    Inner product between V_10 and V_70 is 0.000000
+    Inner product between V_10 and V_20 is 0.000000
     Inner product between V_10 and V_10 is 1.000000
-    Inner product between W_10 and W_70 is 0.000000
+    Inner product between W_10 and W_20 is -0.000000
     Inner product between W_10 and W_10 is 1.000000
+    Inner product between X_10 and X_20 is -0.000000
+    Inner product between X_10 and X_10 is 1.000000
     Inner product between W_10 and V_10 is 0.000000
+    Inner product between X_10 and V_10 is 0.000000
+    Inner product between X_10 and W_10 is 0.000000
 
 
 
@@ -212,7 +235,7 @@ defined on the sphere using the inner product.
 
 
 
-.. image:: /auto_examples/images/sphx_glr_spherical_harmonics_example_007.png
+.. image:: /auto_examples/images/sphx_glr_spherical_harmonics_example_008.png
     :class: sphx-glr-single-img
 
 
@@ -223,14 +246,16 @@ defined on the sphere using the inner product.
  .. code-block:: none
 
 
-    [<matplotlib.lines.Line2D object at 0x7f41be750410>]
+    [<matplotlib.lines.Line2D object at 0x7fa1a02dbd90>]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.531 seconds)
+   **Total running time of the script:** ( 0 minutes  7.627 seconds)
+
+**Estimated memory usage:**  24 MB
 
 
 .. _sphx_glr_download_auto_examples_spherical_harmonics_example.py:

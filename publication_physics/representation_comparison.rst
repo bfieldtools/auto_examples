@@ -62,7 +62,7 @@ Compare SUH and SPH basis functions for the magnetic field
     Computing the laplacian matrix...
     Computing the mass matrix...
     Closed mesh or Neumann BC, leaving out the constant component
-    Computing magnetic field coupling matrix analytically, 2503 vertices by 2503 target points... took 7.89 seconds.
+    Computing magnetic field coupling matrix analytically, 2503 vertices by 2503 target points... took 8.26 seconds.
 
 
 
@@ -71,7 +71,7 @@ Compare SUH and SPH basis functions for the magnetic field
 .. code-block:: default
 
     def plot_basis_fields(C, comps):
-        d = 0.2
+        d = 0.17
         i = 0
         j = 0
         for n in comps:
@@ -91,7 +91,7 @@ Compare SUH and SPH basis functions for the magnetic field
             vectors.glyph.glyph_source.glyph_position = "center"
             vectors.glyph.glyph_source.glyph_source.shaft_radius = 0.02
             vectors.glyph.glyph_source.glyph_source.tip_radius = 0.06
-            vectors.glyph.glyph.scale_factor = 0.025
+            vectors.glyph.glyph.scale_factor = 0.03
             #        m = np.max(abs((C[:,:,n].T*mesh_field.vertex_normals.T).sum(axis=0)))
             #        s =mlab.triangular_mesh(*p.T, mesh_field.faces,
             #                             scalars=(C[:,:,n].T*mesh_field.vertex_normals.T).sum(axis=0),
@@ -204,7 +204,9 @@ from bfieldtools.mesh_magnetics import scalar_potential_coupling
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  26.053 seconds)
+   **Total running time of the script:** ( 0 minutes  27.222 seconds)
+
+**Estimated memory usage:**  792 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_physics_representation_comparison.py:

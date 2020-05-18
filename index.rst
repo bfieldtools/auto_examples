@@ -33,6 +33,26 @@ Below are a number of examples meant to familiarize you with the functionality o
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Map 3D mesh to a 2D (complex) plane with angle-preserving (conformal) mapping">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_flatten_mesh_thumb.png
+
+     :ref:`sphx_glr_auto_examples_flatten_mesh.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/flatten_mesh
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Minimal example showing how to subdivide a mesh and interpolate a scalar function defined on th...">
 
 .. only:: html
@@ -73,26 +93,6 @@ Below are a number of examples meant to familiarize you with the functionality o
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Example of spherical harmonics tools and visualization">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_spherical_harmonics_example_thumb.png
-
-     :ref:`sphx_glr_auto_examples_spherical_harmonics_example.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/spherical_harmonics_example
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="Example on how to compute the magnetic field from current line segments forming a Helmholtz coi...">
 
 .. only:: html
@@ -113,13 +113,13 @@ Below are a number of examples meant to familiarize you with the functionality o
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Map 3D mesh to a 2D (complex) plane with angle-preserving (conformal) mapping">
+    <div class="sphx-glr-thumbcontainer" tooltip="Example of spherical harmonics tools and visualization">
 
 .. only:: html
 
- .. figure:: /auto_examples/images/thumb/sphx_glr_flatten_mesh_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_spherical_harmonics_example_thumb.png
 
-     :ref:`sphx_glr_auto_examples_flatten_mesh.py`
+     :ref:`sphx_glr_auto_examples_spherical_harmonics_example.py`
 
 .. raw:: html
 
@@ -129,7 +129,7 @@ Below are a number of examples meant to familiarize you with the functionality o
 .. toctree::
    :hidden:
 
-   /auto_examples/flatten_mesh
+   /auto_examples/spherical_harmonics_example
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
@@ -341,6 +341,26 @@ Example scripts to reproduce the results of the bfieldtools physics paper.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Visualize SUH components on 3 surfaces">
+
+.. only:: html
+
+ .. figure:: /auto_examples/publication_physics/images/thumb/sphx_glr_visualize_suh_components_thumb.png
+
+     :ref:`sphx_glr_auto_examples_publication_physics_visualize_suh_components.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/publication_physics/visualize_suh_components
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Compare SUH and SPH basis functions for the magnetic field">
 
 .. only:: html
@@ -358,6 +378,26 @@ Example scripts to reproduce the results of the bfieldtools physics paper.
    :hidden:
 
    /auto_examples/publication_physics/representation_comparison
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Compare SUH and SPH basis functions for the magnetic scalar potential">
+
+.. only:: html
+
+ .. figure:: /auto_examples/publication_physics/images/thumb/sphx_glr_representation_comparison_potential_thumb.png
+
+     :ref:`sphx_glr_auto_examples_publication_physics_representation_comparison_potential.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/publication_physics/representation_comparison_potential
 
 .. raw:: html
 
@@ -514,26 +554,6 @@ Example scripts to reproduce the results of the bfieldtools software paper.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="SUH-SPH interpolation comparison">
-
-.. only:: html
-
- .. figure:: /auto_examples/publication_software/images/thumb/sphx_glr_suh_sph_interpolation_thumb.png
-
-     :ref:`sphx_glr_auto_examples_publication_software_suh_sph_interpolation.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/publication_software/suh_sph_interpolation
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="Magnetically shielded  coil">
 
 .. only:: html
@@ -554,7 +574,27 @@ Example scripts to reproduce the results of the bfieldtools software paper.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Field interpolation example">
+    <div class="sphx-glr-thumbcontainer" tooltip="SUH-SPH interpolation comparison">
+
+.. only:: html
+
+ .. figure:: /auto_examples/publication_software/images/thumb/sphx_glr_suh_sph_interpolation_thumb.png
+
+     :ref:`sphx_glr_auto_examples_publication_software_suh_sph_interpolation.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/publication_software/suh_sph_interpolation
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Field interpolation example using equivalent surface currents">
 
 .. only:: html
 
@@ -697,6 +737,26 @@ Example scripts validating the core functionality of `bfieldtools`
    :hidden:
 
    /auto_examples/validation/spherical_harmonics_bfield_validation
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Compare a analytic expression and the numerical computation of the B-field of a symmetric curre...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/validation/images/thumb/sphx_glr_validate_bfield_disc_thumb.png
+
+     :ref:`sphx_glr_auto_examples_validation_validate_bfield_disc.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/validation/validate_bfield_disc
 
 .. raw:: html
 
