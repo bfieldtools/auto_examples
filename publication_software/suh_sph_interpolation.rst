@@ -55,7 +55,7 @@ SUH-SPH interpolation comparison
     EVOKED = True
 
     with np.load(SAVE_DIR + "mne_data.npz", allow_pickle=True) as data:
-        mesh = data["mesh"]
+        # mesh = data["mesh"]
         p = data["p"]
         n = data["n"]
         mesh = trimesh.Trimesh(vertices=data["vertices"], faces=data["faces"])
@@ -360,7 +360,7 @@ evoked1.plot_topomap(times=0.080, ch_type="mag")
  .. code-block:: none
 
 
-    [<matplotlib.lines.Line2D object at 0x7f94ca023790>]
+    [<matplotlib.lines.Line2D object at 0x7f25321be390>]
 
 
 
@@ -410,7 +410,7 @@ evoked1.plot_topomap(times=0.080, ch_type="mag")
 
  .. code-block:: none
 
-    Computing magnetic field coupling matrix, 2562 vertices by 2044 target points... took 1.60 seconds.
+    Computing magnetic field coupling matrix, 2562 vertices by 2044 target points... took 1.43 seconds.
 
 
 
@@ -671,9 +671,9 @@ evoked1.plot_topomap(times=0.080, ch_type="mag")
 
  .. code-block:: none
 
-    Computing scalar potential coupling matrix, 2562 vertices by 1592 target points... took 4.82 seconds.
-    Computing scalar potential coupling matrix, 2562 vertices by 838 target points... took 2.82 seconds.
-    Computing scalar potential coupling matrix, 2562 vertices by 880 target points... took 2.93 seconds.
+    Computing scalar potential coupling matrix, 2562 vertices by 1592 target points... took 4.93 seconds.
+    Computing scalar potential coupling matrix, 2562 vertices by 838 target points... took 2.79 seconds.
+    Computing scalar potential coupling matrix, 2562 vertices by 880 target points... took 2.91 seconds.
 
 
 
@@ -720,16 +720,16 @@ evoked1.plot_topomap(times=0.080, ch_type="mag")
  .. code-block:: none
 
 
-    <mayavi.modules.surface.Surface object at 0x7f9507da8cb0>
+    <mayavi.modules.surface.Surface object at 0x7f25643c13b0>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  51.222 seconds)
+   **Total running time of the script:** ( 1 minutes  52.393 seconds)
 
-**Estimated memory usage:**  1464 MB
+**Estimated memory usage:**  1488 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_software_suh_sph_interpolation.py:
