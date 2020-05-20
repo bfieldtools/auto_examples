@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**01:52.393** total execution time for **auto_examples_publication_software** files:
+**01:50.638** total execution time for **auto_examples_publication_software** files:
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+-----------+
-| :ref:`sphx_glr_auto_examples_publication_software_suh_sph_interpolation.py` (``suh_sph_interpolation.py``)                                                       | 01:52.393 | 1488.5 MB |
+| :ref:`sphx_glr_auto_examples_publication_software_suh_sph_interpolation.py` (``suh_sph_interpolation.py``)                                                       | 01:50.638 | 1472.6 MB |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+-----------+
 | :ref:`sphx_glr_auto_examples_publication_software_mne_interpolation.py` (``mne_interpolation.py``)                                                               | 00:00.000 | 0.0 MB    |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+-----------+

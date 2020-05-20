@@ -55,7 +55,6 @@ SUH-SPH interpolation comparison
     EVOKED = True
 
     with np.load(SAVE_DIR + "mne_data.npz", allow_pickle=True) as data:
-        # mesh = data["mesh"]
         p = data["p"]
         n = data["n"]
         mesh = trimesh.Trimesh(vertices=data["vertices"], faces=data["faces"])
@@ -275,7 +274,7 @@ idx = 20
     Computing the mass matrix...
     Closed mesh or Neumann BC, leaving out the constant component
     Computing the mass matrix...
-    Computing magnetic field coupling matrix, 2562 vertices by 102 target points... took 0.19 seconds.
+    Computing magnetic field coupling matrix, 2562 vertices by 102 target points... took 0.18 seconds.
     Computing the laplacian matrix...
     SUH-reconstruction relative error: 0.011259097908098575
 
@@ -360,7 +359,7 @@ evoked1.plot_topomap(times=0.080, ch_type="mag")
  .. code-block:: none
 
 
-    [<matplotlib.lines.Line2D object at 0x7f25321be390>]
+    [<matplotlib.lines.Line2D object at 0x7f9efea3f750>]
 
 
 
@@ -410,7 +409,7 @@ evoked1.plot_topomap(times=0.080, ch_type="mag")
 
  .. code-block:: none
 
-    Computing magnetic field coupling matrix, 2562 vertices by 2044 target points... took 1.43 seconds.
+    Computing magnetic field coupling matrix, 2562 vertices by 2044 target points... took 1.42 seconds.
 
 
 
@@ -671,9 +670,9 @@ evoked1.plot_topomap(times=0.080, ch_type="mag")
 
  .. code-block:: none
 
-    Computing scalar potential coupling matrix, 2562 vertices by 1592 target points... took 4.93 seconds.
-    Computing scalar potential coupling matrix, 2562 vertices by 838 target points... took 2.79 seconds.
-    Computing scalar potential coupling matrix, 2562 vertices by 880 target points... took 2.91 seconds.
+    Computing scalar potential coupling matrix, 2562 vertices by 1592 target points... took 4.73 seconds.
+    Computing scalar potential coupling matrix, 2562 vertices by 838 target points... took 2.84 seconds.
+    Computing scalar potential coupling matrix, 2562 vertices by 880 target points... took 2.87 seconds.
 
 
 
@@ -720,16 +719,16 @@ evoked1.plot_topomap(times=0.080, ch_type="mag")
  .. code-block:: none
 
 
-    <mayavi.modules.surface.Surface object at 0x7f25643c13b0>
+    <mayavi.modules.surface.Surface object at 0x7f9f25095f50>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  52.393 seconds)
+   **Total running time of the script:** ( 1 minutes  50.638 seconds)
 
-**Estimated memory usage:**  1488 MB
+**Estimated memory usage:**  1473 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_software_suh_sph_interpolation.py:
