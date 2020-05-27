@@ -150,8 +150,8 @@ Create bfield specifications used when optimizing the coil geometry
 
  .. code-block:: none
 
-    Computing magnetic field coupling matrix, 3184 vertices by 160 target points... took 0.25 seconds.
-    Computing magnetic field coupling matrix, 3184 vertices by 642 target points... took 0.58 seconds.
+    Computing magnetic field coupling matrix, 3184 vertices by 160 target points... took 0.29 seconds.
+    Computing magnetic field coupling matrix, 3184 vertices by 642 target points... took 0.59 seconds.
 
 
 
@@ -187,8 +187,6 @@ Create bfield specifications used when optimizing the coil geometry
     Pre-existing problem not passed, creating...
     Passing parameters to problem...
     Passing problem to solver...
-    /home/rzetter/miniconda3/lib/python3.7/site-packages/cvxpy-1.1.0a3-py3.7-linux-x86_64.egg/cvxpy/reductions/solvers/solving_chain.py:170: UserWarning: You are solving a parameterized problem that is not DPP. Because the problem is not DPP, subsequent solves will not be faster than the first one.
-      "You are solving a parameterized problem that is not DPP. "
 
 
     Problem
@@ -221,29 +219,31 @@ Create bfield specifications used when optimizing the coil geometry
     Factor     - setup time             : 0.01              dense det. time        : 0.00            
     Factor     - ML order time          : 0.00              GP order time          : 0.00            
     Factor     - nonzeros before factor : 5151              after factor           : 5151            
-    Factor     - dense dim.             : 0                 flops                  : 2.34e+07        
+    Factor     - dense dim.             : 0                 flops                  : 1.80e+07        
     ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
-    0   6.6e+02  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  0.13  
-    1   4.0e+02  6.1e-01  1.5e+00  -9.89e-01  1.594051669e-01   -2.054592340e-01  6.1e-01  0.13  
-    2   6.0e+01  9.2e-02  5.5e-01  -9.67e-01  2.545804429e+00   9.864151111e+00   9.2e-02  0.14  
-    3   1.5e+01  2.2e-02  2.0e-01  -7.26e-01  1.678188103e+01   3.598095730e+01   2.2e-02  0.15  
-    4   2.0e+00  3.1e-03  2.4e-02  -1.84e-01  5.170525510e+01   6.677330815e+01   3.1e-03  0.15  
-    5   3.6e-01  5.5e-04  1.6e-03  7.63e-01   3.460103709e+01   3.671261595e+01   5.5e-04  0.16  
-    6   5.8e-02  8.9e-05  8.8e-05  1.06e+00   1.026293652e+01   1.049940545e+01   8.9e-05  0.17  
-    7   2.2e-03  3.4e-06  6.3e-07  1.02e+00   8.659704859e+00   8.667911117e+00   3.4e-06  0.18  
-    8   2.9e-04  4.4e-07  3.3e-08  1.00e+00   8.239879259e+00   8.241163522e+00   4.4e-07  0.18  
-    9   3.7e-06  5.6e-09  4.3e-11  1.00e+00   8.184650464e+00   8.184664432e+00   5.6e-09  0.20  
-    10  1.5e-07  2.4e-10  4.0e-13  1.00e+00   8.184050033e+00   8.184050730e+00   2.4e-10  0.21  
-    11  3.1e-08  4.8e-11  3.5e-14  1.00e+00   8.184039085e+00   8.184039228e+00   4.8e-11  0.21  
-    12  5.2e-09  8.0e-12  1.9e-15  1.00e+00   8.184038112e+00   8.184038136e+00   8.0e-12  0.22  
-    Optimizer terminated. Time: 0.22    
+    0   6.6e+02  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  0.09  
+    1   4.4e+02  6.6e-01  1.6e+00  -9.87e-01  1.242404686e-01   -3.791408582e-01  6.6e-01  0.10  
+    2   1.2e+02  1.8e-01  7.8e-01  -9.60e-01  1.109693224e+00   3.956499435e+00   1.8e-01  0.11  
+    3   1.6e+01  2.5e-02  1.8e-01  -7.07e-01  2.865215552e+01   4.020725058e+01   2.5e-02  0.12  
+    4   7.0e-01  1.1e-03  3.6e-03  2.13e-01   3.463100175e+01   3.738850118e+01   1.1e-03  0.12  
+    5   5.4e-01  8.2e-04  2.3e-03  1.20e+00   2.186623490e+01   2.373566156e+01   8.2e-04  0.13  
+    6   4.7e-01  7.1e-04  1.8e-03  1.16e+00   2.672175433e+01   2.827057607e+01   7.1e-04  0.13  
+    7   3.5e-01  5.3e-04  1.1e-03  1.13e+00   1.305976521e+01   1.412810407e+01   5.3e-04  0.14  
+    8   6.6e-02  1.0e-04  7.6e-05  1.09e+00   1.135207342e+01   1.148805971e+01   1.0e-04  0.14  
+    9   4.3e-03  6.5e-06  7.8e-07  1.02e+00   8.889593586e+00   8.892801886e+00   6.5e-06  0.15  
+    10  1.4e-03  2.2e-06  1.5e-07  1.00e+00   8.380254067e+00   8.381363950e+00   2.2e-06  0.16  
+    11  1.1e-04  1.6e-07  3.2e-09  1.00e+00   8.297805381e+00   8.297892684e+00   1.6e-07  0.16  
+    12  4.1e-06  6.2e-09  2.4e-11  1.00e+00   8.294700570e+00   8.294703920e+00   6.2e-09  0.17  
+    13  2.0e-07  3.0e-10  2.5e-13  1.00e+00   8.294657265e+00   8.294657426e+00   3.0e-10  0.18  
+    14  3.0e-09  4.5e-12  1.2e-15  1.00e+00   8.294654536e+00   8.294654538e+00   4.5e-12  0.19  
+    Optimizer terminated. Time: 0.19    
 
 
     Interior-point solution summary
       Problem status  : PRIMAL_AND_DUAL_FEASIBLE
       Solution status : OPTIMAL
-      Primal.  obj: 8.1840381122e+00    nrm: 2e+01    Viol.  con: 5e-10    var: 0e+00    cones: 0e+00  
-      Dual.    obj: 8.1840381364e+00    nrm: 4e+01    Viol.  con: 3e-05    var: 9e-12    cones: 0e+00  
+      Primal.  obj: 8.2946545357e+00    nrm: 2e+01    Viol.  con: 1e-10    var: 0e+00    cones: 0e+00  
+      Dual.    obj: 8.2946545378e+00    nrm: 4e+01    Viol.  con: 7e-06    var: 2e-11    cones: 0e+00  
 
 
 
@@ -288,7 +288,7 @@ Plot the optimized stream function, then discretize it and plot coil windings an
  .. code-block:: none
 
 
-    <mayavi.modules.vectors.Vectors object at 0x7f969d373bf0>
+    <mayavi.modules.vectors.Vectors object at 0x7f0c5979a470>
 
 
 
@@ -362,7 +362,7 @@ Plot the optimized stream function, then discretize it and plot coil windings an
  .. code-block:: none
 
 
-    <mayavi.modules.vectors.Vectors object at 0x7f969e7e3a70>
+    <mayavi.modules.vectors.Vectors object at 0x7f0c5926ae30>
 
 
 
@@ -425,7 +425,9 @@ Plot cross-section of magnetic field and magnetic potential of the discretized l
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  16.565 seconds)
+   **Total running time of the script:** ( 1 minutes  20.879 seconds)
+
+**Estimated memory usage:**  1494 MB
 
 
 .. _sphx_glr_download_auto_examples_coil_design_biplanar_coil_design.py:

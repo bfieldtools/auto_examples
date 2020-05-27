@@ -45,9 +45,12 @@ Visualize SUH components on 3 surfaces
     bunny = load_example_mesh("bunny_repaired")
     bunny.vertices -= bunny.vertices.mean(axis=0)
 
+    mlab.figure(bgcolor=(1, 1, 1))
     for mesh in (sphere, plane, bunny):
-        mlab.triangular_mesh(*mesh.vertices.T, mesh.faces)
-
+        s = mlab.triangular_mesh(
+            *mesh.vertices.T, mesh.faces, color=(0.5, 0.5, 0.5), opacity=0.2
+        )
+    s.scene.z_plus_view()
 
     Nc = 20
     basis_sphere = SuhBasis(sphere, Nc)
@@ -163,7 +166,7 @@ Visualize SUH components on 3 surfaces
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.533 seconds)
+   **Total running time of the script:** ( 0 minutes  3.906 seconds)
 
 **Estimated memory usage:**  12 MB
 

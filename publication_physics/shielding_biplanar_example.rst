@@ -9,8 +9,8 @@
     .. _sphx_glr_auto_examples_publication_physics_shielding_biplanar_example.py:
 
 
-Example of designing biplanar 
-==========================================
+Example of designing a shielded biplanar coil
+===============================================
 
 
 .. code-block:: default
@@ -64,8 +64,15 @@ Example of designing biplanar
     A1, Beta1 = coil1.sph_couplings
     A2, Beta2 = coil2.sph_couplings
 
+    # Use lines below to get coulings with different normalization
+    # from bfieldtools.sphtools import compute_sphcoeffs_mesh
+    # A1, Beta1 = compute_sphcoeffs_mesh(mesh1, 5, normalization='energy', R=1)
+    # A2, Beta2 = compute_sphcoeffs_mesh(mesh2, 5, normalization='energy', R=1)
 
-    x = y = np.linspace(-0.8, 0.8, 150)
+    # Beta1 = Beta1[:, coil1.inner_vertices]
+    # Beta2 = Beta2[:, coil2.inner_vertices]
+
+    x = y = np.linspace(-0.8, 0.8, 50)  # 150)
     X, Y = np.meshgrid(x, y, indexing="ij")
     points = np.zeros((X.flatten().shape[0], 3))
     points[:, 0] = X.flatten()
@@ -92,17 +99,17 @@ Example of designing biplanar
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 34964 MiB required for 3184 by 3184 vertices...
-    Computing inductance matrix in 80 chunks (10844 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 60 chunks (12500 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 13.17 seconds.
+    Inductance matrix computation took 12.91 seconds.
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 34964 MiB required for 3184 by 3184 vertices...
-    Computing inductance matrix in 80 chunks (10690 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 60 chunks (12289 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 13.06 seconds.
+    Inductance matrix computation took 13.15 seconds.
     Estimating 34964 MiB required for 3184 by 3184 vertices...
-    Computing inductance matrix in 80 chunks (10531 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 60 chunks (12118 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
     Computing coupling matrices
     l = 1 computed
@@ -114,10 +121,10 @@ Example of designing biplanar
     l = 2 computed
     l = 3 computed
     l = 4 computed
-    Computing magnetic field coupling matrix, 3184 vertices by 22500 target points... took 15.39 seconds.
-    Computing magnetic field coupling matrix, 3184 vertices by 22500 target points... took 15.04 seconds.
-    Computing scalar potential coupling matrix, 3184 vertices by 22500 target points... took 90.46 seconds.
-    Computing scalar potential coupling matrix, 3184 vertices by 22500 target points... took 87.36 seconds.
+    Computing magnetic field coupling matrix, 3184 vertices by 2500 target points... took 1.80 seconds.
+    Computing magnetic field coupling matrix, 3184 vertices by 2500 target points... took 1.80 seconds.
+    Computing scalar potential coupling matrix, 3184 vertices by 2500 target points... took 8.65 seconds.
+    Computing scalar potential coupling matrix, 3184 vertices by 2500 target points... took 8.68 seconds.
 
 
 
@@ -146,8 +153,8 @@ Minimization of magnetic energy with spherical harmonic constraint
 .. code-block:: default
 
     beta = np.zeros(Beta1.shape[0])
-    # beta[7] = 1 # Gradient
-    beta[2] = 1  # Homogeneous
+    beta[7] = 1  # Gradient
+    # beta[2] = 1  # Homogeneous
 
     # Minimum residual
     _lambda = 1e3
@@ -392,7 +399,9 @@ Minimization of magnetic energy with spherical harmonic constraint
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 4 minutes  46.016 seconds)
+   **Total running time of the script:** ( 1 minutes  31.154 seconds)
+
+**Estimated memory usage:**  2077 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_physics_shielding_biplanar_example.py:

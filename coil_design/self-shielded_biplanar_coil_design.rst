@@ -88,7 +88,7 @@ Plot geometry
  .. code-block:: none
 
 
-    <mayavi.core.scene.Scene object at 0x7f969ed86ad0>
+    <mayavi.core.scene.Scene object at 0x7f0c592711d0>
 
 
 
@@ -123,17 +123,17 @@ Compute inductances and coupling
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 34964 MiB required for 3184 by 3184 vertices...
-    Computing inductance matrix in 60 chunks (11844 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 80 chunks (9376 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 12.81 seconds.
+    Inductance matrix computation took 13.67 seconds.
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 34964 MiB required for 3184 by 3184 vertices...
-    Computing inductance matrix in 60 chunks (11782 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 80 chunks (9126 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 13.08 seconds.
+    Inductance matrix computation took 13.60 seconds.
     Estimating 34964 MiB required for 3184 by 3184 vertices...
-    Computing inductance matrix in 80 chunks (11635 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 80 chunks (8985 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
     Computing coupling matrices
     l = 1 computed
@@ -224,7 +224,7 @@ Do a quick 3D plot
  .. code-block:: none
 
 
-    <mayavi.modules.surface.Surface object at 0x7f969ee5a9b0>
+    <mayavi.modules.surface.Surface object at 0x7f0bf986b650>
 
 
 
@@ -264,10 +264,10 @@ Compute the field and scalar potential on an XY-plane
 
  .. code-block:: none
 
-    Computing magnetic field coupling matrix, 3184 vertices by 22500 target points... took 15.21 seconds.
-    Computing magnetic field coupling matrix, 3184 vertices by 22500 target points... took 15.42 seconds.
-    Computing scalar potential coupling matrix, 3184 vertices by 22500 target points... took 83.93 seconds.
-    Computing scalar potential coupling matrix, 3184 vertices by 22500 target points... took 87.19 seconds.
+    Computing magnetic field coupling matrix, 3184 vertices by 22500 target points... took 15.53 seconds.
+    Computing magnetic field coupling matrix, 3184 vertices by 22500 target points... took 15.30 seconds.
+    Computing scalar potential coupling matrix, 3184 vertices by 22500 target points... took 88.08 seconds.
+    Computing scalar potential coupling matrix, 3184 vertices by 22500 target points... took 94.08 seconds.
 
 
 
@@ -352,7 +352,9 @@ Now, plot the field streamlines and scalar potential
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 4 minutes  36.669 seconds)
+   **Total running time of the script:** ( 4 minutes  53.312 seconds)
+
+**Estimated memory usage:**  12747 MB
 
 
 .. _sphx_glr_download_auto_examples_coil_design_self-shielded_biplanar_coil_design.py:

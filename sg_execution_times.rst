@@ -5,18 +5,18 @@
 
 Computation times
 =================
-**00:16.565** total execution time for **auto_examples** files:
+**00:06.444** total execution time for **auto_examples** files:
 
 +---------------------------------------------------------------------------------------------------+-----------+----------+
-| :ref:`sphx_glr_auto_examples_spherical_harmonics_example.py` (``spherical_harmonics_example.py``) | 00:07.627 | 23.7 MB  |
+| :ref:`sphx_glr_auto_examples_spherical_harmonics_example.py` (``spherical_harmonics_example.py``) | 00:06.444 | 161.6 MB |
 +---------------------------------------------------------------------------------------------------+-----------+----------+
-| :ref:`sphx_glr_auto_examples_line_conductor_inductance.py` (``line_conductor_inductance.py``)     | 00:05.811 | 134.4 MB |
-+---------------------------------------------------------------------------------------------------+-----------+----------+
-| :ref:`sphx_glr_auto_examples_flatten_mesh.py` (``flatten_mesh.py``)                               | 00:03.126 | 173.1 MB |
+| :ref:`sphx_glr_auto_examples_flatten_mesh.py` (``flatten_mesh.py``)                               | 00:00.000 | 0.0 MB   |
 +---------------------------------------------------------------------------------------------------+-----------+----------+
 | :ref:`sphx_glr_auto_examples_gradient_example.py` (``gradient_example.py``)                       | 00:00.000 | 0.0 MB   |
 +---------------------------------------------------------------------------------------------------+-----------+----------+
 | :ref:`sphx_glr_auto_examples_helmholtz_coil.py` (``helmholtz_coil.py``)                           | 00:00.000 | 0.0 MB   |
 +---------------------------------------------------------------------------------------------------+-----------+----------+
 | :ref:`sphx_glr_auto_examples_interpolate_example.py` (``interpolate_example.py``)                 | 00:00.000 | 0.0 MB   |
++---------------------------------------------------------------------------------------------------+-----------+----------+
+| :ref:`sphx_glr_auto_examples_line_conductor_inductance.py` (``line_conductor_inductance.py``)     | 00:00.000 | 0.0 MB   |
 +---------------------------------------------------------------------------------------------------+-----------+----------+

@@ -9,7 +9,7 @@
     .. _sphx_glr_auto_examples_publication_physics_plot_basic_integrals.py:
 
 
-Plot different field patterns the basic integrals
+Analytic integrals as scalar fields
 ========================================================
 
 
@@ -197,10 +197,10 @@ Plot different field patterns the basic integrals
 
  .. code-block:: none
 
-    <function triangle_potential_uniform at 0x7f96c667da70>
-    <function triangle_potential_dipole_linear at 0x7f96c667dcb0>
-    <function gamma0 at 0x7f96c667d710>
-    <function omega at 0x7f96c667d7a0>
+    <function triangle_potential_uniform at 0x7f0c1b9f6680>
+    <function triangle_potential_dipole_linear at 0x7f0c1b9f68c0>
+    <function gamma0 at 0x7f0c1b9f6320>
+    <function omega at 0x7f0c1b9f63b0>
 
 
 
@@ -208,7 +208,9 @@ Plot different field patterns the basic integrals
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.909 seconds)
+   **Total running time of the script:** ( 0 minutes  3.525 seconds)
+
+**Estimated memory usage:**  12 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_physics_plot_basic_integrals.py:

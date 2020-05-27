@@ -95,11 +95,6 @@ Set up target  points and plot geometry
 .. code-block:: default
 
 
-    # Here, the target points are on a volumetric grid within a sphere
-    # Set up target and stray field points
-
-    # Here, the target points are on a volumetric grid within a sphere
-
     center = np.array([9, 0, 0]) * scaling_factor
 
     sidelength = 3 * scaling_factor
@@ -125,35 +120,19 @@ Set up target  points and plot geometry
 
     f = mlab.figure(None, bgcolor=(1, 1, 1), fgcolor=(0.5, 0.5, 0.5), size=(800, 800))
 
-    coil.plot_mesh(representation="surface")
-    shield.plot_mesh(representation="surface", cull_front=True, color=(0.9, 0.9, 0.9))
+    coil.plot_mesh(representation="surface", figure=f, opacity=0.5)
+    shield.plot_mesh(representation="surface", opacity=0.2, figure=f)
     mlab.points3d(*target_points.T)
 
-
     f.scene.isometric_view()
-    f.scene.camera.zoom(1.2)
+    f.scene.camera.zoom(1.1)
 
 
 
 
 
-.. rst-class:: sphx-glr-horizontal
-
-
-    *
-
-      .. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_001.png
-            :class: sphx-glr-multi-img
-
-    *
-
-      .. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_002.png
-            :class: sphx-glr-multi-img
-
-    *
-
-      .. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_003.png
-            :class: sphx-glr-multi-img
+.. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_001.png
+    :class: sphx-glr-single-img
 
 
 
@@ -207,14 +186,12 @@ Let's design a coil without taking the magnetic shield into account
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 34964 MiB required for 3184 by 3184 vertices...
-    Computing inductance matrix in 60 chunks (12884 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 60 chunks (12151 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 13.64 seconds.
+    Inductance matrix computation took 13.03 seconds.
     Pre-existing problem not passed, creating...
     Passing parameters to problem...
     Passing problem to solver...
-    /home/rzetter/miniconda3/lib/python3.7/site-packages/cvxpy-1.1.0a3-py3.7-linux-x86_64.egg/cvxpy/reductions/solvers/solving_chain.py:170: UserWarning: You are solving a parameterized problem that is not DPP. Because the problem is not DPP, subsequent solves will not be faster than the first one.
-      "You are solving a parameterized problem that is not DPP. "
 
 
     Problem
@@ -244,29 +221,30 @@ Let's design a coil without taking the magnetic shield into account
     Optimizer  - Cones                  : 1
     Optimizer  - Scalar variables       : 6930              conic                  : 2898            
     Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
-    Factor     - setup time             : 1.23              dense det. time        : 0.00            
-    Factor     - ML order time          : 0.19              GP order time          : 0.00            
+    Factor     - setup time             : 0.92              dense det. time        : 0.00            
+    Factor     - ML order time          : 0.18              GP order time          : 0.00            
     Factor     - nonzeros before factor : 4.20e+06          after factor           : 4.20e+06        
-    Factor     - dense dim.             : 0                 flops                  : 4.93e+10        
+    Factor     - dense dim.             : 0                 flops                  : 3.31e+10        
     ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
-    0   1.3e+02  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  114.96
-    1   6.2e+01  4.9e-01  8.3e-01  -1.96e-01  1.240457322e+02   1.235079730e+02   4.9e-01  115.80
-    2   2.8e+01  2.2e-01  2.8e-01  -8.66e-02  4.745038929e+02   4.742160042e+02   2.2e-01  116.54
-    3   6.9e+00  5.3e-02  3.7e-02  1.16e+00   7.772866775e+02   7.772419801e+02   5.3e-02  117.41
-    4   1.3e+00  1.0e-02  3.0e-03  1.00e+00   8.795694177e+02   8.795594215e+02   1.0e-02  118.28
-    5   1.8e-01  1.4e-03  1.6e-04  9.78e-01   9.028714779e+02   9.028704012e+02   1.4e-03  119.00
-    6   1.9e-02  1.5e-04  5.4e-06  9.99e-01   9.066099589e+02   9.066098492e+02   1.5e-04  119.88
-    7   2.4e-03  1.9e-05  2.5e-07  1.00e+00   9.070392461e+02   9.070392326e+02   1.9e-05  120.58
-    8   1.3e-04  9.9e-07  2.8e-09  1.00e+00   9.070997059e+02   9.070997053e+02   9.9e-07  121.28
-    9   2.1e-06  3.6e-09  5.6e-11  1.00e+00   9.071030696e+02   9.071030686e+02   3.6e-09  122.44
-    Optimizer terminated. Time: 122.92  
+    0   1.0e+03  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  4.42  
+    1   4.5e+02  4.4e-01  1.1e+00  -7.30e-01  5.327102614e+01   5.318155897e+01   4.4e-01  5.04  
+    2   2.3e+02  2.2e-01  6.0e-01  -4.50e-01  2.594248081e+02   2.599322310e+02   2.2e-01  5.63  
+    3   3.1e+01  3.1e-02  6.6e-02  -8.59e-02  8.803728379e+02   8.812167455e+02   3.1e-02  6.21  
+    4   2.7e+00  2.6e-03  1.7e-03  7.54e-01   9.125606569e+02   9.126395285e+02   2.6e-03  6.93  
+    5   6.0e-01  5.8e-04  1.8e-04  9.79e-01   9.069071853e+02   9.069250230e+02   5.8e-04  7.55  
+    6   2.7e-01  2.6e-04  5.5e-05  9.95e-01   9.072761546e+02   9.072838260e+02   2.6e-04  8.13  
+    7   2.8e-02  2.7e-05  1.8e-06  9.98e-01   9.070886715e+02   9.070894398e+02   2.7e-05  8.74  
+    8   2.8e-03  2.7e-06  5.6e-08  1.00e+00   9.070853236e+02   9.070853942e+02   2.7e-06  9.37  
+    9   1.1e-04  1.1e-07  1.1e-09  1.00e+00   9.071023136e+02   9.071023144e+02   1.1e-07  9.97  
+    10  6.1e-07  2.4e-09  2.1e-12  1.00e+00   9.071030780e+02   9.071030781e+02   5.9e-10  10.69 
+    Optimizer terminated. Time: 11.02   
 
 
     Interior-point solution summary
       Problem status  : PRIMAL_AND_DUAL_FEASIBLE
       Solution status : OPTIMAL
-      Primal.  obj: 9.0710306957e+02    nrm: 2e+03    Viol.  con: 6e-09    var: 0e+00    cones: 0e+00  
-      Dual.    obj: 9.0710306864e+02    nrm: 6e+03    Viol.  con: 1e-07    var: 1e-09    cones: 0e+00  
+      Primal.  obj: 9.0710307796e+02    nrm: 2e+03    Viol.  con: 4e-09    var: 0e+00    cones: 0e+00  
+      Dual.    obj: 9.0710307806e+02    nrm: 6e+03    Viol.  con: 2e-06    var: 3e-08    cones: 0e+00  
 
 
 
@@ -288,14 +266,13 @@ Plot coil windings and target points
 
     mlab.quiver3d(*target_points.T, *B_target.T, mode="arrow", scale_factor=0.75)
 
-
     f.scene.isometric_view()
     f.scene.camera.zoom(0.95)
 
 
 
 
-.. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_004.png
+.. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_002.png
     :class: sphx-glr-single-img
 
 
@@ -333,8 +310,8 @@ Now, let's compute the effect of the shield on the field produced by the coil
 
  .. code-block:: none
 
-    Computing scalar potential coupling matrix, 2773 vertices by 2773 target points... took 9.21 seconds.
-    Computing scalar potential coupling matrix, 3184 vertices by 2773 target points... took 10.08 seconds.
+    Computing scalar potential coupling matrix, 2773 vertices by 2773 target points... took 9.00 seconds.
+    Computing scalar potential coupling matrix, 3184 vertices by 2773 target points... took 9.78 seconds.
 
 
 
@@ -367,7 +344,7 @@ Plot the difference in field when taking the shield into account
 
 
 
-.. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_005.png
+.. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_003.png
     :class: sphx-glr-single-img
 
 
@@ -377,10 +354,10 @@ Plot the difference in field when taking the shield into account
 
  .. code-block:: none
 
-    Computing magnetic field coupling matrix, 2773 vertices by 672 target points... took 0.58 seconds.
+    Computing magnetic field coupling matrix, 2773 vertices by 672 target points... took 0.56 seconds.
     This object has no scalar data
 
-    <mayavi.core.lut_manager.LUTManager object at 0x7f969e109230>
+    <mayavi.core.lut_manager.LUTManager object at 0x7ff939c57e30>
 
 
 
@@ -454,41 +431,31 @@ Let's redesign the coil taking the shield into account prospectively
     Optimizer  - Cones                  : 1
     Optimizer  - Scalar variables       : 6930              conic                  : 2898            
     Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
-    Factor     - setup time             : 1.19              dense det. time        : 0.00            
-    Factor     - ML order time          : 0.16              GP order time          : 0.00            
+    Factor     - setup time             : 0.90              dense det. time        : 0.00            
+    Factor     - ML order time          : 0.17              GP order time          : 0.00            
     Factor     - nonzeros before factor : 4.20e+06          after factor           : 4.20e+06        
-    Factor     - dense dim.             : 0                 flops                  : 4.93e+10        
+    Factor     - dense dim.             : 0                 flops                  : 3.31e+10        
     ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
-    0   1.3e+02  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  120.90
-    1   6.6e+01  5.1e-01  9.2e-01  -2.59e-01  1.079606567e+02   1.074140904e+02   5.1e-01  121.62
-    2   3.2e+01  2.5e-01  3.5e-01  -1.91e-01  4.304279912e+02   4.301298179e+02   2.5e-01  122.44
-    3   2.0e+01  1.6e-01  1.8e-01  1.11e+00   6.401620263e+02   6.399871669e+02   1.6e-01  123.21
-    4   1.2e+01  9.4e-02  8.6e-02  8.89e-01   8.113033668e+02   8.112046537e+02   9.4e-02  123.89
-    5   9.4e+00  7.3e-02  6.0e-02  9.20e-01   8.666550972e+02   8.665809853e+02   7.3e-02  124.61
-    6   5.8e+00  4.5e-02  3.2e-02  8.79e-01   9.379560115e+02   9.379205554e+02   4.5e-02  125.27
-    7   7.8e-01  6.1e-03  1.7e-03  8.90e-01   1.095853913e+03   1.095850700e+03   6.1e-03  125.98
-    8   1.3e-01  1.0e-03  1.2e-04  9.81e-01   1.122783264e+03   1.122782965e+03   1.0e-03  126.77
-    9   1.8e-02  1.4e-04  6.0e-06  9.96e-01   1.128483616e+03   1.128483567e+03   1.4e-04  127.51
-    10  2.8e-03  2.2e-05  3.9e-07  9.99e-01   1.129273255e+03   1.129273250e+03   2.2e-05  128.25
-    11  5.9e-05  4.6e-07  1.0e-09  1.00e+00   1.129423574e+03   1.129423574e+03   4.6e-07  129.03
-    12  5.0e-05  3.9e-07  6.1e-10  1.00e+00   1.129424027e+03   1.129424028e+03   3.9e-07  129.95
-    13  1.8e-05  1.4e-07  3.9e-10  1.00e+00   1.129425791e+03   1.129425790e+03   1.4e-07  130.61
-    14  1.0e-05  8.0e-08  1.9e-10  1.00e+00   1.129426188e+03   1.129426188e+03   8.0e-08  131.57
-    15  9.1e-06  2.8e-08  1.9e-11  1.00e+00   1.129426711e+03   1.129426711e+03   5.0e-09  132.22
-    16  8.3e-06  2.5e-08  3.1e-11  1.00e+00   1.129426715e+03   1.129426715e+03   4.4e-09  133.26
-    17  6.7e-06  2.0e-08  5.8e-11  1.00e+00   1.129426723e+03   1.129426722e+03   3.3e-09  134.19
-    18  4.2e-06  1.7e-08  6.5e-11  1.00e+00   1.129426723e+03   1.129426724e+03   3.3e-09  135.22
-    19  4.2e-06  1.7e-08  6.5e-11  1.00e+00   1.129426723e+03   1.129426724e+03   3.3e-09  136.28
-    20  5.4e-06  1.6e-08  3.4e-11  1.00e+00   1.129426725e+03   1.129426725e+03   3.1e-09  137.24
-    21  7.3e-05  8.3e-09  1.9e-11  1.00e+00   1.129426735e+03   1.129426736e+03   1.5e-09  138.34
-    Optimizer terminated. Time: 138.79  
+    0   1.0e+03  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  4.37  
+    1   4.6e+02  4.4e-01  1.1e+00  -7.17e-01  6.091562708e+01   6.078906288e+01   4.4e-01  4.96  
+    2   2.4e+02  2.4e-01  6.3e-01  -4.44e-01  2.794436170e+02   2.798668032e+02   2.4e-01  5.60  
+    3   3.5e+01  3.4e-02  7.3e-02  -8.97e-02  1.021741496e+03   1.022519676e+03   3.4e-02  6.22  
+    4   5.8e-01  5.6e-04  1.8e-04  7.38e-01   1.138954022e+03   1.138971891e+03   5.6e-04  6.96  
+    5   1.6e-01  1.6e-04  2.3e-05  9.98e-01   1.129521654e+03   1.129524935e+03   1.6e-04  7.65  
+    6   6.7e-02  6.5e-05  6.1e-06  9.99e-01   1.129644522e+03   1.129645924e+03   6.5e-05  8.26  
+    7   8.8e-03  8.5e-06  2.9e-07  1.00e+00   1.129374023e+03   1.129374209e+03   8.5e-06  8.97  
+    8   1.1e-03  1.1e-06  1.3e-08  1.00e+00   1.129416676e+03   1.129416701e+03   1.1e-06  9.60  
+    9   3.4e-05  3.3e-08  8.2e-11  1.00e+00   1.129426431e+03   1.129426431e+03   3.3e-08  10.33 
+    10  1.1e-05  1.1e-08  1.0e-10  1.00e+00   1.129426640e+03   1.129426639e+03   1.1e-08  10.93 
+    11  1.7e-06  1.3e-09  1.2e-10  1.00e+00   1.129426733e+03   1.129426730e+03   1.3e-09  11.56 
+    Optimizer terminated. Time: 11.89   
 
 
     Interior-point solution summary
       Problem status  : PRIMAL_AND_DUAL_FEASIBLE
       Solution status : OPTIMAL
-      Primal.  obj: 1.1294267352e+03    nrm: 2e+03    Viol.  con: 3e-09    var: 0e+00    cones: 0e+00  
-      Dual.    obj: 1.1294267357e+03    nrm: 1e+04    Viol.  con: 3e-08    var: 4e-09    cones: 0e+00  
+      Primal.  obj: 1.1294267334e+03    nrm: 2e+03    Viol.  con: 8e-09    var: 0e+00    cones: 0e+00  
+      Dual.    obj: 1.1294267301e+03    nrm: 1e+04    Viol.  con: 5e-06    var: 1e-08    cones: 0e+00  
 
 
 
@@ -517,7 +484,7 @@ Plot the newly designed coil windings and field at the target points
 
 
 
-.. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_006.png
+.. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_004.png
     :class: sphx-glr-single-img
 
 
@@ -579,7 +546,7 @@ Plot difference in field
 
 
 
-.. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_007.png
+.. image:: /auto_examples/coil_design/images/sphx_glr_magnetically_shielded_biplanar_coil_design_005.png
     :class: sphx-glr-single-img
 
 
@@ -589,7 +556,9 @@ Plot difference in field
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 6 minutes  4.111 seconds)
+   **Total running time of the script:** ( 1 minutes  30.986 seconds)
+
+**Estimated memory usage:**  3778 MB
 
 
 .. _sphx_glr_download_auto_examples_coil_design_magnetically_shielded_biplanar_coil_design.py:

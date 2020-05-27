@@ -167,9 +167,9 @@ DC magnetic noise from unit disc
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 6592 MiB required for 1207 by 1207 vertices...
-    Computing inductance matrix in 20 chunks (8045 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 20 chunks (12320 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 2.16 seconds.
+    Inductance matrix computation took 2.38 seconds.
     0 0
     1 0
     2 0
@@ -212,7 +212,7 @@ DC magnetic noise from unit disc
     4 5
     5 5
     6 5
-    Computing magnetic field coupling matrix analytically, 1207 vertices by 30 target points... took 0.03 seconds.
+    Computing magnetic field coupling matrix analytically, 1207 vertices by 30 target points... took 0.05 seconds.
     findfont: Font family ['normal'] not found. Falling back to DejaVu Sans.
     No component count given, computing all components.
     Calculating surface harmonics expansion...
@@ -281,7 +281,7 @@ DC magnetic noise in the center of sphere with different radii
 
  .. code-block:: none
 
-    Computing magnetic field coupling matrix analytically, 2562 vertices by 1 target points... took 0.02 seconds.
+    Computing magnetic field coupling matrix analytically, 2562 vertices by 1 target points... took 0.03 seconds.
     No component count given, computing all components.
     Calculating surface harmonics expansion...
     Computing the resistance matrix...
@@ -505,9 +505,9 @@ Unit disc, AC noise
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 27858 MiB required for 2790 by 2790 vertices...
-    Computing inductance matrix in 80 chunks (7646 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 60 chunks (11654 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 11.04 seconds.
+    Inductance matrix computation took 11.21 seconds.
     Computing magnetic field coupling matrix analytically, 2790 vertices by 10 target points... took 0.04 seconds.
     No handles with labels found to put in legend.
 
@@ -517,9 +517,9 @@ Unit disc, AC noise
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  15.455 seconds)
+   **Total running time of the script:** ( 2 minutes  12.956 seconds)
 
-**Estimated memory usage:**  1811 MB
+**Estimated memory usage:**  1827 MB
 
 
 .. _sphx_glr_download_auto_examples_thermal_noise_thermal_noise_simulation.py:

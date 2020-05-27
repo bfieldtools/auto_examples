@@ -75,7 +75,7 @@ from a plane mesh.  Finally, we discretize the  mode into a set of wire loops, w
     Computing the laplacian matrix...
     Computing the mass matrix...
 
-    <mayavi.core.scene.Scene object at 0x7fa208a59e90>
+    <mayavi.core.scene.Scene object at 0x7f0c5991f590>
 
 
 
@@ -168,9 +168,9 @@ The inductance derived from the continous current density
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 2432 MiB required for 676 by 676 vertices...
-    Computing inductance matrix in 20 chunks (7537 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 20 chunks (9460 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 0.90 seconds.
+    Inductance matrix computation took 0.94 seconds.
     Inductance based on the continuous current density 8.689344781849715e-05
     Inductance based on r=1mm wire 9.793656583088348e-05
 
@@ -180,9 +180,9 @@ The inductance derived from the continous current density
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.811 seconds)
+   **Total running time of the script:** ( 0 minutes  6.626 seconds)
 
-**Estimated memory usage:**  134 MB
+**Estimated memory usage:**  160 MB
 
 
 .. _sphx_glr_download_auto_examples_line_conductor_inductance.py:

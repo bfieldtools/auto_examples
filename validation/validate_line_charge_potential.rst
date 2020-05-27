@@ -181,27 +181,29 @@ For the math see:
 
  .. code-block:: none
 
-    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:72: RuntimeWarning: invalid value encountered in true_divide
+    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:85: RuntimeWarning: invalid value encountered in true_divide
       res = np.log((nn1 + dotprods1 + reg) / (nn2 + dotprods2 + reg))
-    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:72: RuntimeWarning: divide by zero encountered in log
+    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:85: RuntimeWarning: divide by zero encountered in log
       res = np.log((nn1 + dotprods1 + reg) / (nn2 + dotprods2 + reg))
-    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:80: RuntimeWarning: divide by zero encountered in true_divide
+    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:93: RuntimeWarning: divide by zero encountered in true_divide
       (nn1[mask] - dotprods1[mask] + reg) / (nn2[mask] - dotprods2[mask] + reg)
-    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:72: RuntimeWarning: invalid value encountered in true_divide
+    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:85: RuntimeWarning: invalid value encountered in true_divide
       res = np.log((nn1 + dotprods1 + reg) / (nn2 + dotprods2 + reg))
-    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:72: RuntimeWarning: divide by zero encountered in log
+    /home/rzetter/Documents/bfieldtools/bfieldtools/integrals.py:85: RuntimeWarning: divide by zero encountered in log
       res = np.log((nn1 + dotprods1 + reg) / (nn2 + dotprods2 + reg))
     /home/rzetter/Documents/bfieldtools/examples/validation/validate_line_charge_potential.py:101: RuntimeWarning: invalid value encountered in true_divide
       plt.plot(x, abs(pot0 - pot1) / pot1)
 
-    [<matplotlib.lines.Line2D object at 0x7f969570c4d0>]
+    [<matplotlib.lines.Line2D object at 0x7f0c11ebded0>]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.304 seconds)
+   **Total running time of the script:** ( 0 minutes  1.713 seconds)
+
+**Estimated memory usage:**  9 MB
 
 
 .. _sphx_glr_download_auto_examples_validation_validate_line_charge_potential.py:

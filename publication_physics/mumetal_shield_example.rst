@@ -9,8 +9,8 @@
     .. _sphx_glr_auto_examples_publication_physics_mumetal_shield_example.py:
 
 
-Example of a cylindrical perfect mu-metal shield
-=======================================================
+Field distortion by a perfect mu-metal shield
+===========================================================
 
 
 .. code-block:: default
@@ -186,7 +186,7 @@ Example of a cylindrical perfect mu-metal shield
 
  .. code-block:: none
 
-    Computing scalar potential coupling matrix, 3184 vertices by 2773 target points... took 10.23 seconds.
+    Computing scalar potential coupling matrix, 3184 vertices by 2773 target points... took 9.77 seconds.
 
 
 
@@ -229,7 +229,7 @@ Example of a cylindrical perfect mu-metal shield
 
  .. code-block:: none
 
-    Computing scalar potential coupling matrix, 2773 vertices by 2773 target points... took 9.25 seconds.
+    Computing scalar potential coupling matrix, 2773 vertices by 2773 target points... took 8.82 seconds.
 
 
 
@@ -336,8 +336,8 @@ Example of a cylindrical perfect mu-metal shield
 
  .. code-block:: none
 
-    Computing scalar potential coupling matrix, 2773 vertices by 6400 target points... took 21.77 seconds.
-    Computing scalar potential coupling matrix, 3184 vertices by 6400 target points... took 23.76 seconds.
+    Computing scalar potential coupling matrix, 2773 vertices by 6400 target points... took 20.79 seconds.
+    Computing scalar potential coupling matrix, 3184 vertices by 6400 target points... took 22.85 seconds.
 
 
 
@@ -475,7 +475,9 @@ Example of a cylindrical perfect mu-metal shield
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  11.983 seconds)
+   **Total running time of the script:** ( 1 minutes  11.485 seconds)
+
+**Estimated memory usage:**  2103 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_physics_mumetal_shield_example.py:

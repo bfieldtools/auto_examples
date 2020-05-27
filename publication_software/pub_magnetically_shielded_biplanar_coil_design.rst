@@ -125,14 +125,12 @@ Set up target  points and plot geometry
     if PLOT:
         f = mlab.figure(None, bgcolor=(1, 1, 1), fgcolor=(0.5, 0.5, 0.5), size=(800, 800))
 
-        coil.plot_mesh(representation="surface", figure=f, opacity=0.15)
-        shield.plot_mesh(
-            representation="surface", cull_front=True, color=(0.9, 0.9, 0.9), figure=f
-        )
+        coil.plot_mesh(representation="surface", figure=f, opacity=0.5)
+        shield.plot_mesh(representation="surface", opacity=0.2, figure=f)
         mlab.points3d(*target_points.T)
 
         f.scene.isometric_view()
-        f.scene.camera.zoom(1.2)
+        f.scene.camera.zoom(1.1)
 
         if SAVE_FIGURES:
             mlab.savefig(
@@ -196,13 +194,13 @@ Let's design a coil without taking the magnetic shield into account
 
  .. code-block:: none
 
-    Computing magnetic field coupling matrix, 3184 vertices by 672 target points... took 0.65 seconds.
+    Computing magnetic field coupling matrix, 3184 vertices by 672 target points... took 0.63 seconds.
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 34964 MiB required for 3184 by 3184 vertices...
-    Computing inductance matrix in 60 chunks (12017 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 60 chunks (12274 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 13.47 seconds.
+    Inductance matrix computation took 13.32 seconds.
     Pre-existing problem not passed, creating...
     Passing parameters to problem...
     Passing problem to solver...
@@ -235,30 +233,30 @@ Let's design a coil without taking the magnetic shield into account
     Optimizer  - Cones                  : 1
     Optimizer  - Scalar variables       : 6930              conic                  : 2898            
     Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
-    Factor     - setup time             : 1.35              dense det. time        : 0.00            
+    Factor     - setup time             : 0.91              dense det. time        : 0.00            
     Factor     - ML order time          : 0.18              GP order time          : 0.00            
     Factor     - nonzeros before factor : 4.20e+06          after factor           : 4.20e+06        
-    Factor     - dense dim.             : 0                 flops                  : 4.93e+10        
+    Factor     - dense dim.             : 0                 flops                  : 3.31e+10        
     ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
-    0   1.0e+03  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  117.46
-    1   4.5e+02  4.4e-01  1.1e+00  -7.30e-01  5.327108191e+01   5.318161480e+01   4.4e-01  118.22
-    2   2.3e+02  2.2e-01  6.0e-01  -4.50e-01  2.594250451e+02   2.599324681e+02   2.2e-01  118.89
-    3   3.1e+01  3.1e-02  6.6e-02  -8.59e-02  8.803737426e+02   8.812176503e+02   3.1e-02  119.54
-    4   2.7e+00  2.6e-03  1.7e-03  7.54e-01   9.125617181e+02   9.126405893e+02   2.6e-03  120.33
-    5   6.0e-01  5.8e-04  1.8e-04  9.79e-01   9.069082291e+02   9.069260669e+02   5.8e-04  121.01
-    6   2.7e-01  2.6e-04  5.5e-05  9.95e-01   9.072772186e+02   9.072848896e+02   2.6e-04  121.69
-    7   2.7e-02  2.7e-05  1.8e-06  9.98e-01   9.070897206e+02   9.070904889e+02   2.7e-05  122.37
-    8   2.8e-03  2.7e-06  5.6e-08  1.00e+00   9.070863768e+02   9.070864475e+02   2.7e-06  123.06
-    9   1.1e-04  1.1e-07  1.0e-11  1.00e+00   9.071033596e+02   9.071033638e+02   1.1e-07  123.90
-    10  6.1e-07  6.0e-10  1.8e-12  1.00e+00   9.071041244e+02   9.071041243e+02   6.0e-10  124.92
-    Optimizer terminated. Time: 125.36  
+    0   1.0e+03  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  4.65  
+    1   4.5e+02  4.4e-01  1.1e+00  -7.30e-01  5.327108192e+01   5.318161482e+01   4.4e-01  5.36  
+    2   2.3e+02  2.2e-01  6.0e-01  -4.50e-01  2.594250452e+02   2.599324682e+02   2.2e-01  5.97  
+    3   3.1e+01  3.1e-02  6.6e-02  -8.59e-02  8.803737426e+02   8.812176504e+02   3.1e-02  6.55  
+    4   2.7e+00  2.6e-03  1.7e-03  7.54e-01   9.125617181e+02   9.126405893e+02   2.6e-03  7.35  
+    5   6.0e-01  5.8e-04  1.8e-04  9.79e-01   9.069082291e+02   9.069260669e+02   5.8e-04  7.93  
+    6   2.7e-01  2.6e-04  5.5e-05  9.95e-01   9.072772186e+02   9.072848897e+02   2.6e-04  8.54  
+    7   2.7e-02  2.7e-05  1.8e-06  9.98e-01   9.070897206e+02   9.070904889e+02   2.7e-05  9.18  
+    8   2.8e-03  2.7e-06  5.6e-08  1.00e+00   9.070863768e+02   9.070864475e+02   2.7e-06  9.81  
+    9   1.1e-04  1.1e-07  6.1e-10  1.00e+00   9.071033596e+02   9.071033620e+02   1.1e-07  10.44 
+    10  6.1e-07  6.0e-10  1.5e-11  1.00e+00   9.071041244e+02   9.071041238e+02   6.0e-10  11.16 
+    Optimizer terminated. Time: 11.52   
 
 
     Interior-point solution summary
       Problem status  : PRIMAL_AND_DUAL_FEASIBLE
       Solution status : OPTIMAL
       Primal.  obj: 9.0710412437e+02    nrm: 2e+03    Viol.  con: 4e-09    var: 0e+00    cones: 0e+00  
-      Dual.    obj: 9.0710412432e+02    nrm: 6e+03    Viol.  con: 2e-06    var: 1e-09    cones: 0e+00  
+      Dual.    obj: 9.0710412376e+02    nrm: 6e+03    Viol.  con: 2e-06    var: 1e-09    cones: 0e+00  
 
 
 
@@ -330,8 +328,8 @@ Now, let's compute the effect of the shield on the field produced by the coil
 
  .. code-block:: none
 
-    Computing scalar potential coupling matrix, 2773 vertices by 2773 target points... took 8.84 seconds.
-    Computing scalar potential coupling matrix, 3184 vertices by 2773 target points... took 9.74 seconds.
+    Computing scalar potential coupling matrix, 2773 vertices by 2773 target points... took 9.24 seconds.
+    Computing scalar potential coupling matrix, 3184 vertices by 2773 target points... took 9.98 seconds.
 
 
 
@@ -375,7 +373,7 @@ Plot the difference in field when taking the shield into account
 
  .. code-block:: none
 
-    Computing magnetic field coupling matrix, 2773 vertices by 672 target points... took 0.54 seconds.
+    Computing magnetic field coupling matrix, 2773 vertices by 672 target points... took 0.57 seconds.
     This object has no scalar data
 
 
@@ -450,31 +448,31 @@ Let's redesign the coil taking the shield into account prospectively
     Optimizer  - Cones                  : 1
     Optimizer  - Scalar variables       : 6930              conic                  : 2898            
     Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
-    Factor     - setup time             : 1.08              dense det. time        : 0.00            
+    Factor     - setup time             : 0.95              dense det. time        : 0.00            
     Factor     - ML order time          : 0.17              GP order time          : 0.00            
     Factor     - nonzeros before factor : 4.20e+06          after factor           : 4.20e+06        
-    Factor     - dense dim.             : 0                 flops                  : 4.93e+10        
+    Factor     - dense dim.             : 0                 flops                  : 3.31e+10        
     ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
-    0   1.0e+03  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  112.63
-    1   4.6e+02  4.4e-01  1.1e+00  -7.17e-01  6.091568992e+01   6.078912581e+01   4.4e-01  113.33
-    2   2.4e+02  2.4e-01  6.3e-01  -4.44e-01  2.794438665e+02   2.798670529e+02   2.4e-01  114.00
-    3   3.5e+01  3.4e-02  7.3e-02  -8.97e-02  1.021742465e+03   1.022520645e+03   3.4e-02  114.67
-    4   5.8e-01  5.6e-04  1.8e-04  7.38e-01   1.138954809e+03   1.138972680e+03   5.6e-04  115.50
-    5   1.6e-01  1.6e-04  2.3e-05  9.98e-01   1.129523039e+03   1.129526323e+03   1.6e-04  116.29
-    6   6.7e-02  6.5e-05  6.1e-06  9.99e-01   1.129645660e+03   1.129647063e+03   6.5e-05  116.96
-    7   8.8e-03  8.5e-06  2.9e-07  1.00e+00   1.129375305e+03   1.129375491e+03   8.5e-06  117.80
-    8   1.1e-03  1.1e-06  1.3e-08  1.00e+00   1.129417794e+03   1.129417819e+03   1.1e-06  118.66
-    9   3.5e-05  3.4e-08  7.7e-11  1.00e+00   1.129427523e+03   1.129427524e+03   3.4e-08  119.52
-    10  1.1e-05  1.1e-08  2.3e-10  1.00e+00   1.129427736e+03   1.129427739e+03   1.1e-08  120.20
-    11  1.3e-06  1.3e-09  5.8e-11  1.00e+00   1.129427831e+03   1.129427832e+03   1.3e-09  120.89
-    Optimizer terminated. Time: 121.34  
+    0   1.0e+03  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  4.68  
+    1   4.6e+02  4.4e-01  1.1e+00  -7.17e-01  6.091568992e+01   6.078912581e+01   4.4e-01  5.33  
+    2   2.4e+02  2.4e-01  6.3e-01  -4.44e-01  2.794438665e+02   2.798670529e+02   2.4e-01  5.95  
+    3   3.5e+01  3.4e-02  7.3e-02  -8.97e-02  1.021742465e+03   1.022520645e+03   3.4e-02  6.58  
+    4   5.8e-01  5.6e-04  1.8e-04  7.38e-01   1.138954809e+03   1.138972680e+03   5.6e-04  7.31  
+    5   1.6e-01  1.6e-04  2.3e-05  9.98e-01   1.129523039e+03   1.129526323e+03   1.6e-04  8.02  
+    6   6.7e-02  6.5e-05  6.1e-06  9.99e-01   1.129645660e+03   1.129647063e+03   6.5e-05  8.67  
+    7   8.8e-03  8.5e-06  2.9e-07  1.00e+00   1.129375305e+03   1.129375491e+03   8.5e-06  9.51  
+    8   1.1e-03  1.1e-06  1.3e-08  1.00e+00   1.129417794e+03   1.129417819e+03   1.1e-06  10.23 
+    9   3.5e-05  3.4e-08  5.4e-11  1.00e+00   1.129427523e+03   1.129427524e+03   3.4e-08  10.97 
+    10  1.1e-05  1.1e-08  1.6e-10  1.00e+00   1.129427736e+03   1.129427735e+03   1.1e-08  11.73 
+    11  5.6e-06  1.7e-09  3.1e-10  1.00e+00   1.129427831e+03   1.129427822e+03   1.3e-09  12.37 
+    Optimizer terminated. Time: 12.71   
 
 
     Interior-point solution summary
       Problem status  : PRIMAL_AND_DUAL_FEASIBLE
       Solution status : OPTIMAL
       Primal.  obj: 1.1294278308e+03    nrm: 2e+03    Viol.  con: 8e-09    var: 0e+00    cones: 0e+00  
-      Dual.    obj: 1.1294278324e+03    nrm: 1e+04    Viol.  con: 5e-06    var: 1e-08    cones: 0e+00  
+      Dual.    obj: 1.1294278224e+03    nrm: 1e+04    Viol.  con: 5e-06    var: 2e-08    cones: 0e+00  
 
 
 
@@ -583,7 +581,9 @@ Plot difference in field
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 5 minutes  46.987 seconds)
+   **Total running time of the script:** ( 1 minutes  34.482 seconds)
+
+**Estimated memory usage:**  3560 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_software_pub_magnetically_shielded_biplanar_coil_design.py:

@@ -246,16 +246,16 @@ defined on the sphere using the inner product.
  .. code-block:: none
 
 
-    [<matplotlib.lines.Line2D object at 0x7fa1a02dbd90>]
+    [<matplotlib.lines.Line2D object at 0x7f99ca865910>]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.627 seconds)
+   **Total running time of the script:** ( 0 minutes  6.444 seconds)
 
-**Estimated memory usage:**  24 MB
+**Estimated memory usage:**  162 MB
 
 
 .. _sphx_glr_download_auto_examples_spherical_harmonics_example.py:

@@ -9,8 +9,8 @@
     .. _sphx_glr_auto_examples_validation_validate_linear_dipole.py:
 
 
-Linear dipole
-=============
+Linear dipole density on a triangle
+=========================================
 
 Test and validation of potential of linearly distributed dipolar density
 
@@ -99,6 +99,9 @@ For the math see:
 
 
 %% Test summation formula
+ NOTE: the sign of tilde(omega)_i in the bfieldtools
+ (triangle_potential_dipole_linear) is equal to -omega_i
+ in the de Munck's paper refered above
 
 
 .. code-block:: default
@@ -113,13 +116,13 @@ For the math see:
     plt.imshow(pot_sum[:, 0].reshape(Nx, Nx), vmin=0, vmax=pot_sum.max())
     plt.colorbar(orientation="horizontal")
     plt.sca(ax[1])
-    plt.title("Solid angle")
-    plt.imshow(solid_angle[:, 0].reshape(Nx, Nx), vmin=0, vmax=pot_sum.max())
+    plt.title("Negative solid angle")
+    plt.imshow(-solid_angle[:, 0].reshape(Nx, Nx), vmin=0, vmax=pot_sum.max())
     plt.colorbar(orientation="horizontal")
     plt.sca(ax[2])
     plt.title("Abs difference")
     plt.imshow(
-        abs((solid_angle[:, 0] - pot_sum[:, 0])).reshape(Nx, Nx),
+        abs((-solid_angle[:, 0] - pot_sum[:, 0])).reshape(Nx, Nx),
         vmin=0,
         vmax=pot_sum.max() / 1e16,
     )
@@ -184,14 +187,16 @@ For the math see:
  .. code-block:: none
 
 
-    [<matplotlib.lines.Line2D object at 0x7f9696a272d0>]
+    [<matplotlib.lines.Line2D object at 0x7f0c11e01e90>]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.615 seconds)
+   **Total running time of the script:** ( 0 minutes  1.755 seconds)
+
+**Estimated memory usage:**  9 MB
 
 
 .. _sphx_glr_download_auto_examples_validation_validate_linear_dipole.py:

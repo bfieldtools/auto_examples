@@ -103,7 +103,7 @@ Plot original scalars and mesh
  .. code-block:: none
 
 
-    <mayavi.modules.surface.Surface object at 0x7f96a30c3650>
+    <mayavi.modules.surface.Surface object at 0x7f0bfc4f9bf0>
 
 
 
@@ -157,14 +157,16 @@ Plot subdivided mesh and interpolated scalars
  .. code-block:: none
 
 
-    <mayavi.modules.surface.Surface object at 0x7f969f062cb0>
+    <mayavi.modules.surface.Surface object at 0x7f0c5990af50>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.519 seconds)
+   **Total running time of the script:** ( 0 minutes  1.422 seconds)
+
+**Estimated memory usage:**  38 MB
 
 
 .. _sphx_glr_download_auto_examples_interpolate_example.py:

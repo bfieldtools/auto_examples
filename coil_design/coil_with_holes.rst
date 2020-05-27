@@ -137,7 +137,7 @@ Create bfield specifications used when optimizing the coil geometry
 
  .. code-block:: none
 
-    Computing magnetic field coupling matrix, 2772 vertices by 160 target points... took 0.21 seconds.
+    Computing magnetic field coupling matrix, 2772 vertices by 160 target points... took 0.22 seconds.
 
 
 
@@ -170,14 +170,12 @@ Run QP solver
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Estimating 27549 MiB required for 2772 by 2772 vertices...
-    Computing inductance matrix in 60 chunks (12026 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 60 chunks (9360 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Inductance matrix computation took 9.81 seconds.
+    Inductance matrix computation took 10.45 seconds.
     Pre-existing problem not passed, creating...
     Passing parameters to problem...
     Passing problem to solver...
-    /home/rzetter/miniconda3/lib/python3.7/site-packages/cvxpy-1.1.0a3-py3.7-linux-x86_64.egg/cvxpy/reductions/solvers/solving_chain.py:170: UserWarning: You are solving a parameterized problem that is not DPP. Because the problem is not DPP, subsequent solves will not be faster than the first one.
-      "You are solving a parameterized problem that is not DPP. "
 
 
     Problem
@@ -207,34 +205,33 @@ Run QP solver
     Optimizer  - Cones                  : 1
     Optimizer  - Scalar variables       : 3364              conic                  : 2404            
     Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
-    Factor     - setup time             : 0.44              dense det. time        : 0.00            
+    Factor     - setup time             : 0.34              dense det. time        : 0.00            
     Factor     - ML order time          : 0.12              GP order time          : 0.00            
     Factor     - nonzeros before factor : 2.89e+06          after factor           : 2.89e+06        
-    Factor     - dense dim.             : 0                 flops                  : 2.13e+10        
+    Factor     - dense dim.             : 0                 flops                  : 1.20e+10        
     ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
-    0   3.2e+01  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  63.16 
-    1   2.2e+01  6.8e-01  1.0e+00  -4.93e-02  4.394350998e+00   3.612244501e+00   6.8e-01  63.50 
-    2   1.4e+01  4.5e-01  1.2e-01  1.73e-01   1.742209642e+01   1.685672440e+01   4.5e-01  63.84 
-    3   4.1e+00  1.3e-01  5.6e-02  1.35e+00   2.924843157e+01   2.903652904e+01   1.3e-01  64.18 
-    4   1.5e+00  4.6e-02  1.6e-02  5.05e-01   5.617431064e+01   5.608964506e+01   4.6e-02  64.54 
-    5   2.3e-01  7.3e-03  1.2e-03  3.38e-01   9.172543086e+01   9.170633095e+01   7.3e-03  64.95 
-    6   8.0e-02  2.5e-03  3.4e-04  7.43e-01   1.029694889e+02   1.029645986e+02   2.5e-03  65.28 
-    7   2.6e-03  8.0e-05  2.1e-06  1.02e+00   1.085962470e+02   1.085961045e+02   8.0e-05  65.74 
-    8   1.4e-03  4.2e-05  8.3e-07  1.01e+00   1.086891419e+02   1.086890775e+02   4.2e-05  66.07 
-    9   2.0e-04  6.2e-06  5.4e-08  1.01e+00   1.087870964e+02   1.087870918e+02   6.2e-06  66.45 
-    10  2.7e-05  8.6e-07  2.9e-09  1.00e+00   1.088016474e+02   1.088016470e+02   8.6e-07  66.84 
-    11  3.9e-06  1.9e-07  1.6e-10  1.00e+00   1.088036432e+02   1.088036431e+02   1.2e-07  67.22 
-    12  9.0e-07  7.3e-08  1.6e-11  1.00e+00   1.088038961e+02   1.088038960e+02   2.8e-08  67.55 
-    13  2.3e-07  1.8e-08  2.0e-12  1.00e+00   1.088039536e+02   1.088039536e+02   7.1e-09  68.01 
-    14  6.3e-08  2.1e-09  2.1e-13  1.00e+00   1.088039708e+02   1.088039708e+02   7.8e-10  68.46 
-    Optimizer terminated. Time: 68.62   
+    0   2.6e+02  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  1.40  
+    1   9.5e+01  3.7e-01  3.7e-01  2.72e-01   2.032550662e+01   1.978947626e+01   3.7e-01  1.70  
+    2   5.2e+01  2.0e-01  2.2e-01  2.64e-01   4.206360188e+01   4.172428917e+01   2.0e-01  1.99  
+    3   2.1e+01  8.1e-02  3.1e-02  1.43e+00   9.031259720e+01   9.017883545e+01   8.1e-02  2.29  
+    4   8.3e+00  3.2e-02  1.0e-02  9.42e-01   9.954558419e+01   9.949694972e+01   3.2e-02  2.56  
+    5   7.6e-01  3.0e-03  3.5e-04  9.78e-01   1.076262176e+02   1.076229362e+02   3.0e-03  2.93  
+    6   1.0e-01  4.0e-04  1.8e-05  1.02e+00   1.086072215e+02   1.086067963e+02   4.0e-04  3.27  
+    7   1.4e-02  5.4e-05  9.0e-07  1.00e+00   1.087762905e+02   1.087762356e+02   5.4e-05  3.60  
+    8   2.2e-03  8.4e-06  5.5e-08  1.00e+00   1.087997220e+02   1.087997135e+02   8.4e-06  3.91  
+    9   1.9e-04  7.5e-07  1.4e-09  1.00e+00   1.088036087e+02   1.088036080e+02   7.5e-07  4.26  
+    10  9.3e-05  3.6e-07  5.0e-10  1.00e+00   1.088037954e+02   1.088037951e+02   3.6e-07  4.59  
+    11  1.3e-05  4.9e-08  2.2e-11  1.00e+00   1.088039483e+02   1.088039483e+02   4.9e-08  4.91  
+    12  2.5e-06  9.6e-09  3.7e-11  1.00e+00   1.088039680e+02   1.088039683e+02   9.6e-09  5.21  
+    13  5.0e-07  2.0e-09  3.0e-12  1.00e+00   1.088039719e+02   1.088039720e+02   2.0e-09  5.69  
+    Optimizer terminated. Time: 5.78    
 
 
     Interior-point solution summary
       Problem status  : PRIMAL_AND_DUAL_FEASIBLE
       Solution status : OPTIMAL
-      Primal.  obj: 1.0880397081e+02    nrm: 2e+02    Viol.  con: 1e-09    var: 0e+00    cones: 0e+00  
-      Dual.    obj: 1.0880397082e+02    nrm: 3e+03    Viol.  con: 0e+00    var: 8e-10    cones: 0e+00  
+      Primal.  obj: 1.0880397193e+02    nrm: 2e+02    Viol.  con: 2e-09    var: 0e+00    cones: 0e+00  
+      Dual.    obj: 1.0880397200e+02    nrm: 3e+03    Viol.  con: 1e-07    var: 2e-09    cones: 0e+00  
 
 
 
@@ -260,14 +257,16 @@ Plot the computed streamfunction
  .. code-block:: none
 
 
-    <mayavi.modules.surface.Surface object at 0x7f969cd803b0>
+    <mayavi.modules.surface.Surface object at 0x7f0bf97d1230>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  31.411 seconds)
+   **Total running time of the script:** ( 0 minutes  21.910 seconds)
+
+**Estimated memory usage:**  1437 MB
 
 
 .. _sphx_glr_download_auto_examples_coil_design_coil_with_holes.py:

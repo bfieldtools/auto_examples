@@ -401,7 +401,7 @@ Example scripts to reproduce the results of the bfieldtools physics paper.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Plot different field patterns the basic integrals">
+    <div class="sphx-glr-thumbcontainer" tooltip="Analytic integrals as scalar fields">
 
 .. only:: html
 
@@ -441,7 +441,7 @@ Example scripts to reproduce the results of the bfieldtools physics paper.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Example of a cylindrical perfect mu-metal shield">
+    <div class="sphx-glr-thumbcontainer" tooltip="Field distortion by a perfect mu-metal shield">
 
 .. only:: html
 
@@ -461,7 +461,7 @@ Example scripts to reproduce the results of the bfieldtools physics paper.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Example of designing biplanar">
+    <div class="sphx-glr-thumbcontainer" tooltip="Example of designing a shielded biplanar coil">
 
 .. only:: html
 
@@ -900,7 +900,7 @@ Example scripts validating the core functionality of `bfieldtools`
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="One-element validation">
+    <div class="sphx-glr-thumbcontainer" tooltip="One-element fields">
 
 .. only:: html
 
@@ -957,26 +957,6 @@ Example scripts validating the core functionality of `bfieldtools`
    :hidden:
 
    /auto_examples/validation/validate_magnetic_field_line_segments
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Integrals testing">
-
-.. only:: html
-
- .. figure:: /auto_examples/validation/images/thumb/sphx_glr_test_integrals_thumb.png
-
-     :ref:`sphx_glr_auto_examples_validation_test_integrals.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/validation/test_integrals
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

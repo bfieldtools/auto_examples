@@ -1,6 +1,6 @@
 """
-Linear dipole
-=============
+Linear dipole density on a triangle
+=========================================
 
 Test and validation of potential of linearly distributed dipolar density
 
@@ -27,7 +27,7 @@ from bfieldtools.integrals import triangle_potential_dipole_linear
 from bfieldtools.integrals import omega
 from bfieldtools.utils import tri_normals_and_areas
 
-#########################################################
+#%%
 #%% Test potential shape slightly above the surface
 # points = np.array([[0,0,0],
 #                   [1,0,0],
@@ -67,8 +67,11 @@ for i in range(3):
         plt.ylabel("x")
         plt.xlabel("y")
 
-#########################################################
+#%%
 #%% Test summation formula
+# NOTE: the sign of tilde(omega)_i in the bfieldtools
+# (triangle_potential_dipole_linear) is equal to -omega_i
+# in the de Munck's paper refered above
 pot_sum = triangle_potential_dipole_linear(RR, tn, ta).sum(axis=-1)
 solid_angle = omega(RR)
 
@@ -79,13 +82,13 @@ plt.title("Sum of potentials")
 plt.imshow(pot_sum[:, 0].reshape(Nx, Nx), vmin=0, vmax=pot_sum.max())
 plt.colorbar(orientation="horizontal")
 plt.sca(ax[1])
-plt.title("Solid angle")
-plt.imshow(solid_angle[:, 0].reshape(Nx, Nx), vmin=0, vmax=pot_sum.max())
+plt.title("Negative solid angle")
+plt.imshow(-solid_angle[:, 0].reshape(Nx, Nx), vmin=0, vmax=pot_sum.max())
 plt.colorbar(orientation="horizontal")
 plt.sca(ax[2])
 plt.title("Abs difference")
 plt.imshow(
-    abs((solid_angle[:, 0] - pot_sum[:, 0])).reshape(Nx, Nx),
+    abs((-solid_angle[:, 0] - pot_sum[:, 0])).reshape(Nx, Nx),
     vmin=0,
     vmax=pot_sum.max() / 1e16,
 )
@@ -95,7 +98,7 @@ plt.axis("image")
 plt.tight_layout()
 
 
-#########################################################
+#%%
 #%% Test asymptotic behavour
 def dip_potential(Reval, Rdip, moment):
     R = Reval - Rdip
