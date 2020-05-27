@@ -9,7 +9,7 @@
     .. _sphx_glr_auto_examples_publication_physics_shielding_closed_surface_example_direct_invert.py:
 
 
-Design a field of a closed enclosed in a volume
+Design a field enclosed in a volume
 ================================================
 
 
@@ -115,18 +115,18 @@ Design a field of a closed enclosed in a volume
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Computing triangle-coupling matrix
-    Inductance matrix computation took 11.24 seconds.
+    Inductance matrix computation took 15.33 seconds.
     Computing the inductance matrix...
     Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
     Computing triangle-coupling matrix
-    Inductance matrix computation took 10.85 seconds.
+    Inductance matrix computation took 11.63 seconds.
     Estimating 24888 MiB required for 2665 by 2562 vertices...
-    Computing inductance matrix in 80 chunks (7249 MiB memory free),              when approx_far=True using more chunks is faster...
+    Computing inductance matrix in 340 chunks (1485 MiB memory free),              when approx_far=True using more chunks is faster...
     Computing triangle-coupling matrix
-    Computing magnetic field coupling matrix analytically, 2562 vertices by 10000 target points... took 36.94 seconds.
-    Computing magnetic field coupling matrix analytically, 2665 vertices by 10000 target points... took 34.74 seconds.
-    Computing scalar potential coupling matrix, 2562 vertices by 10000 target points... took 30.08 seconds.
-    Computing scalar potential coupling matrix, 2665 vertices by 10000 target points... took 33.09 seconds.
+    Computing magnetic field coupling matrix analytically, 2562 vertices by 10000 target points... took 43.93 seconds.
+    Computing magnetic field coupling matrix analytically, 2665 vertices by 10000 target points... took 38.57 seconds.
+    Computing scalar potential coupling matrix, 2562 vertices by 10000 target points... took 30.87 seconds.
+    Computing scalar potential coupling matrix, 2665 vertices by 10000 target points... took 31.94 seconds.
 
 
 
@@ -318,9 +318,9 @@ b20 = (
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  51.349 seconds)
+   **Total running time of the script:** ( 3 minutes  10.142 seconds)
 
-**Estimated memory usage:**  4324 MB
+**Estimated memory usage:**  4267 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_physics_shielding_closed_surface_example_direct_invert.py:

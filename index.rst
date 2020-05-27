@@ -10,126 +10,6 @@ Example gallery
 Below are a number of examples meant to familiarize you with the functionality of bfieldtools.
 
 
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Minimal example visualizing the gradient of a scalar function on a mesh">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_gradient_example_thumb.png
-
-     :ref:`sphx_glr_auto_examples_gradient_example.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/gradient_example
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Map 3D mesh to a 2D (complex) plane with angle-preserving (conformal) mapping">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_flatten_mesh_thumb.png
-
-     :ref:`sphx_glr_auto_examples_flatten_mesh.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/flatten_mesh
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Minimal example showing how to subdivide a mesh and interpolate a scalar function defined on th...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_interpolate_example_thumb.png
-
-     :ref:`sphx_glr_auto_examples_interpolate_example.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/interpolate_example
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="In this example, we demonstrate how to compute the mutual inductance between two sets of polyli...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_line_conductor_inductance_thumb.png
-
-     :ref:`sphx_glr_auto_examples_line_conductor_inductance.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/line_conductor_inductance
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Example on how to compute the magnetic field from current line segments forming a Helmholtz coi...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_helmholtz_coil_thumb.png
-
-     :ref:`sphx_glr_auto_examples_helmholtz_coil.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/helmholtz_coil
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Example of spherical harmonics tools and visualization">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_spherical_harmonics_example_thumb.png
-
-     :ref:`sphx_glr_auto_examples_spherical_harmonics_example.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/spherical_harmonics_example
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
@@ -421,7 +301,7 @@ Example scripts to reproduce the results of the bfieldtools physics paper.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Design a field of a closed enclosed in a volume">
+    <div class="sphx-glr-thumbcontainer" tooltip="Design a field enclosed in a volume">
 
 .. only:: html
 
