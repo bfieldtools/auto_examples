@@ -34,7 +34,7 @@ optimization problem that can be solved very quickly.
 
     # Specify coil plane geometry
     center_offset = np.array([0, 0, 0])
-    standoff = np.array([0, 3, 0])
+    standoff = np.array([0, 15, 0])
 
     # Create coil plane pairs
     coil_plus = trimesh.Trimesh(
@@ -53,12 +53,27 @@ optimization problem that can be solved very quickly.
         joined_planes.vertices
         - 0.5
         * np.linalg.norm(joined_planes.vertices, axis=1)[:, None]
+        * np.sign(joined_planes.vertices[:, 1])[:, None]
         * joined_planes.vertex_normals
     )
 
+    joined_planes.vertices = (
+        joined_planes.vertices
+        - 0.5
+        * np.linalg.norm(joined_planes.vertices, axis=1)[:, None]
+        * np.sign(joined_planes.vertices[:, 1])[:, None]
+        * joined_planes.vertex_normals
+    )
+
+
     # Create mesh class object
     coil = MeshConductor(
-        mesh_obj=joined_planes, fix_normals=True, basis_name="suh", N_suh=100
+        mesh_obj=joined_planes,
+        fix_normals=True,
+        basis_name="suh",
+        N_suh=100,
+        sph_radius=0.2,
+        sph_normalization="energy",
     )
 
 
@@ -88,7 +103,7 @@ Set up target spherical harmonics components
     target_alms = np.zeros((coil.opts["N_sph"] * (coil.opts["N_sph"] + 2),))
     target_blms = np.zeros((coil.opts["N_sph"] * (coil.opts["N_sph"] + 2),))
 
-    target_blms[3] += 1
+    target_blms[4] += 1
 
 
 
@@ -151,7 +166,6 @@ Run QP solver
 
 
 
-
 .. rst-class:: sphx-glr-script-out
 
  Out:
@@ -187,34 +201,33 @@ Run QP solver
 
     Optimizer  - threads                : 8               
     Optimizer  - solved problem         : the primal      
-    Optimizer  - Constraints            : 36
+    Optimizer  - Constraints            : 21
     Optimizer  - Cones                  : 1
-    Optimizer  - Scalar variables       : 137               conic                  : 102             
+    Optimizer  - Scalar variables       : 122               conic                  : 102             
     Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
     Factor     - setup time             : 0.00              dense det. time        : 0.00            
     Factor     - ML order time          : 0.00              GP order time          : 0.00            
-    Factor     - nonzeros before factor : 666               after factor           : 666             
-    Factor     - dense dim.             : 0                 flops                  : 1.44e+05        
+    Factor     - nonzeros before factor : 231               after factor           : 231             
+    Factor     - dense dim.             : 0                 flops                  : 4.57e+04        
     ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
-    0   8.9e+00  1.0e+00  1.0e+00  0.00e+00   5.000000000e-01   5.000000000e-01   1.0e+00  0.02  
-    1   3.7e+00  4.2e-01  4.3e-01  -3.09e-01  1.326877957e+00   1.692364855e+00   4.2e-01  0.03  
-    2   2.4e+00  2.6e-01  2.6e-01  -1.48e-01  4.896405523e+00   5.345147693e+00   2.6e-01  0.03  
-    3   1.1e+00  1.2e-01  1.1e-01  -8.59e-02  1.325296342e+01   1.374685656e+01   1.2e-01  0.03  
-    4   8.0e-01  9.0e-02  7.3e-02  5.10e-01   1.772841716e+01   1.811172365e+01   9.0e-02  0.03  
-    5   1.1e-01  1.2e-02  2.9e-03  9.63e-01   2.556973711e+01   2.558921374e+01   1.2e-02  0.03  
-    6   8.0e-03  8.9e-04  5.2e-05  1.09e+00   2.693424318e+01   2.693516231e+01   8.9e-04  0.03  
-    7   4.7e-05  5.2e-06  2.1e-08  1.08e+00   2.704665381e+01   2.704665557e+01   5.2e-06  0.03  
-    8   1.6e-06  1.8e-07  1.3e-10  1.00e+00   2.704724320e+01   2.704724325e+01   1.8e-07  0.03  
-    9   4.6e-08  5.1e-09  6.6e-13  1.00e+00   2.704726335e+01   2.704726335e+01   5.2e-09  0.03  
-    10  1.3e-11  6.9e-10  1.2e-16  1.00e+00   2.704726401e+01   2.704726401e+01   8.6e-13  0.03  
-    Optimizer terminated. Time: 0.03    
+    0   2.6e+03  1.0e+00  1.0e+00  0.00e+00   5.000000000e-01   5.000000000e-01   1.0e+00  0.00  
+    1   3.5e+02  1.3e-01  3.6e-01  -9.99e-01  2.106776004e+00   8.539033584e+00   1.3e-01  0.00  
+    2   5.9e+01  2.2e-02  1.4e-01  -9.86e-01  1.056154434e+01   5.043072723e+01   2.2e-02  0.01  
+    3   7.2e+00  2.7e-03  3.9e-02  -8.86e-01  5.862068212e+01   2.665291713e+02   2.7e-03  0.01  
+    4   9.5e-01  3.6e-04  4.7e-03  -1.93e-01  7.820100570e+01   2.457313707e+02   3.6e-04  0.01  
+    5   7.1e-02  2.7e-05  8.2e-05  8.62e-01   1.581261876e+01   2.492473364e+01   2.7e-05  0.01  
+    6   3.1e-03  1.2e-06  6.1e-07  1.12e+00   1.293685796e+01   1.320298909e+01   1.2e-06  0.01  
+    7   2.7e-04  1.0e-07  1.5e-08  1.10e+00   1.268464223e+01   1.270457442e+01   1.0e-07  0.01  
+    8   7.9e-07  3.0e-10  2.1e-12  1.01e+00   1.260896786e+01   1.260901454e+01   3.0e-10  0.01  
+    9   5.5e-10  2.8e-13  8.2e-18  1.00e+00   1.260893219e+01   1.260893222e+01   2.1e-13  0.01  
+    Optimizer terminated. Time: 0.01    
 
 
     Interior-point solution summary
       Problem status  : PRIMAL_AND_DUAL_FEASIBLE
       Solution status : OPTIMAL
-      Primal.  obj: 2.7047264009e+01    nrm: 6e+01    Viol.  con: 2e-11    var: 0e+00    cones: 0e+00  
-      Dual.    obj: 2.7047264009e+01    nrm: 3e+02    Viol.  con: 6e-10    var: 2e-09    cones: 0e+00  
+      Primal.  obj: 1.2608932191e+01    nrm: 3e+01    Viol.  con: 1e-10    var: 0e+00    cones: 0e+00  
+      Dual.    obj: 1.2608932224e+01    nrm: 3e+01    Viol.  con: 2e-05    var: 1e-11    cones: 0e+00  
 
 
 
@@ -225,7 +238,13 @@ Plot coil windings
 .. code-block:: default
 
 
-    coil.s.discretize(N_contours=8).plot_loops()
+
+    f = coil.plot_mesh(opacity=0.2)
+
+    loops = coil.s.discretize(N_contours=6)
+
+    loops.plot_loops(figure=f)
+
 
 
 
@@ -240,16 +259,165 @@ Plot coil windings
  .. code-block:: none
 
 
-    <mayavi.core.scene.Scene object at 0x7f0c11db0d10>
+    <mayavi.core.scene.Scene object at 0x7fa450fab8f0>
+
+
+
+Now, let's change the spherical harmonics inner expansion radius (i.e. the target region radius)
+and optimize a new coil (with the same target sph component)
+
+
+.. code-block:: default
+
+
+    coil.set_sph_options(sph_radius=1.4)
+
+
+    target_spec = {
+        "coupling": coil.sph_couplings[1],
+        "abs_error": 0.01,
+        "target": target_blms,
+    }
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Computing coupling matrices
+    l = 1 computed
+    l = 2 computed
+    l = 3 computed
+    l = 4 computed
+    l = 5 computed
+
+
+
+
+Run QP solver
+
+
+.. code-block:: default
+
+    import mosek
+
+    coil.s2, prob = optimize_streamfunctions(
+        coil,
+        [target_spec],
+        objective="minimum_ohmic_power",
+        solver="MOSEK",
+        solver_opts={"mosek_params": {mosek.iparam.num_threads: 8}},
+    )
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Pre-existing problem not passed, creating...
+    Passing parameters to problem...
+    Passing problem to solver...
+
+
+    Problem
+      Name                   :                 
+      Objective sense        : min             
+      Type                   : CONIC (conic optimization problem)
+      Constraints            : 172             
+      Cones                  : 1               
+      Scalar variables       : 203             
+      Matrix variables       : 0               
+      Integer variables      : 0               
+
+    Optimizer started.
+    Problem
+      Name                   :                 
+      Objective sense        : min             
+      Type                   : CONIC (conic optimization problem)
+      Constraints            : 172             
+      Cones                  : 1               
+      Scalar variables       : 203             
+      Matrix variables       : 0               
+      Integer variables      : 0               
+
+    Optimizer  - threads                : 8               
+    Optimizer  - solved problem         : the primal      
+    Optimizer  - Constraints            : 21
+    Optimizer  - Cones                  : 1
+    Optimizer  - Scalar variables       : 122               conic                  : 102             
+    Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
+    Factor     - setup time             : 0.00              dense det. time        : 0.00            
+    Factor     - ML order time          : 0.00              GP order time          : 0.00            
+    Factor     - nonzeros before factor : 231               after factor           : 231             
+    Factor     - dense dim.             : 0                 flops                  : 4.58e+04        
+    ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
+    0   2.0e+00  1.0e+00  1.0e+00  0.00e+00   5.000000000e-01   5.000000000e-01   1.0e+00  0.00  
+    1   6.7e-01  3.3e-01  1.8e-01  1.14e+00   3.511690623e-01   3.232903157e-01   3.3e-01  0.01  
+    2   2.5e-01  1.3e-01  1.9e-02  9.73e-01   1.001501457e+00   9.333696466e-01   1.3e-01  0.01  
+    3   3.9e-02  2.0e-02  6.8e-04  1.31e+00   1.073643030e+00   1.063449217e+00   2.0e-02  0.01  
+    4   4.2e-03  2.1e-03  2.2e-05  1.32e+00   1.085794962e+00   1.084873799e+00   2.1e-03  0.01  
+    5   7.5e-05  3.8e-05  4.8e-08  1.21e+00   1.088222840e+00   1.088208156e+00   3.8e-05  0.01  
+    6   1.5e-07  7.5e-08  4.3e-12  1.01e+00   1.088267709e+00   1.088267680e+00   7.5e-08  0.01  
+    7   5.8e-10  1.4e-10  1.2e-15  1.00e+00   1.088267811e+00   1.088267811e+00   2.9e-10  0.01  
+    Optimizer terminated. Time: 0.01    
+
+
+    Interior-point solution summary
+      Problem status  : PRIMAL_AND_DUAL_FEASIBLE
+      Solution status : OPTIMAL
+      Primal.  obj: 1.0882678108e+00    nrm: 4e+00    Viol.  con: 2e-10    var: 0e+00    cones: 0e+00  
+      Dual.    obj: 1.0882678106e+00    nrm: 9e+00    Viol.  con: 2e-08    var: 6e-11    cones: 0e+00  
+
+
+
+
+Plot coil windings
+
+
+.. code-block:: default
+
+
+
+    f2 = coil.plot_mesh(opacity=0.2)
+
+    loops2 = coil.s2.discretize(N_contours=6)
+
+    loops2.plot_loops(figure=f2)
+
+
+
+.. image:: /auto_examples/coil_design/images/sphx_glr_spherical_harmonics_coil_design_002.png
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    <mayavi.core.scene.Scene object at 0x7fa4369149b0>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  23.156 seconds)
+   **Total running time of the script:** ( 0 minutes  46.518 seconds)
 
-**Estimated memory usage:**  67 MB
+**Estimated memory usage:**  262 MB
 
 
 .. _sphx_glr_download_auto_examples_coil_design_spherical_harmonics_coil_design.py:

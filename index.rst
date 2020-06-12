@@ -27,26 +27,6 @@ Examples related to coil design.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Example showing a basic biplanar coil producing a field profile defined by spherical harmonics....">
-
-.. only:: html
-
- .. figure:: /auto_examples/coil_design/images/thumb/sphx_glr_spherical_harmonics_coil_design_thumb.png
-
-     :ref:`sphx_glr_auto_examples_coil_design_spherical_harmonics_coil_design.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/coil_design/spherical_harmonics_coil_design
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="Example showing a gradient coil designed on the surface of a MEG system helmet">
 
 .. only:: html
@@ -104,6 +84,26 @@ Examples related to coil design.
    :hidden:
 
    /auto_examples/coil_design/coil_with_holes
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example showing a basic biplanar coil producing a field profile defined by spherical harmonics....">
+
+.. only:: html
+
+ .. figure:: /auto_examples/coil_design/images/thumb/sphx_glr_spherical_harmonics_coil_design_thumb.png
+
+     :ref:`sphx_glr_auto_examples_coil_design_spherical_harmonics_coil_design.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/coil_design/spherical_harmonics_coil_design
 
 .. raw:: html
 
@@ -204,6 +204,140 @@ Examples related to coil design.
    :hidden:
 
    /auto_examples/coil_design/minimal_eddy_current_cylindrical_coil_design
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_auto_examples_misc_examples:
+
+Miscellaneous examples
+==========================
+
+Examples of the usage of different parts of bfieldtools
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Minimal example visualizing the gradient of a scalar function on a mesh">
+
+.. only:: html
+
+ .. figure:: /auto_examples/misc_examples/images/thumb/sphx_glr_gradient_example_thumb.png
+
+     :ref:`sphx_glr_auto_examples_misc_examples_gradient_example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/misc_examples/gradient_example
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Map 3D mesh to a 2D (complex) plane with angle-preserving (conformal) mapping">
+
+.. only:: html
+
+ .. figure:: /auto_examples/misc_examples/images/thumb/sphx_glr_flatten_mesh_thumb.png
+
+     :ref:`sphx_glr_auto_examples_misc_examples_flatten_mesh.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/misc_examples/flatten_mesh
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Minimal example showing how to subdivide a mesh and interpolate a scalar function defined on th...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/misc_examples/images/thumb/sphx_glr_interpolate_example_thumb.png
+
+     :ref:`sphx_glr_auto_examples_misc_examples_interpolate_example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/misc_examples/interpolate_example
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example, we demonstrate how to compute the mutual inductance between two sets of polyli...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/misc_examples/images/thumb/sphx_glr_line_conductor_inductance_thumb.png
+
+     :ref:`sphx_glr_auto_examples_misc_examples_line_conductor_inductance.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/misc_examples/line_conductor_inductance
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example on how to compute the magnetic field from current line segments forming a Helmholtz coi...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/misc_examples/images/thumb/sphx_glr_helmholtz_coil_thumb.png
+
+     :ref:`sphx_glr_auto_examples_misc_examples_helmholtz_coil.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/misc_examples/helmholtz_coil
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example of spherical harmonics tools and visualization">
+
+.. only:: html
+
+ .. figure:: /auto_examples/misc_examples/images/thumb/sphx_glr_spherical_harmonics_example_thumb.png
+
+     :ref:`sphx_glr_auto_examples_misc_examples_spherical_harmonics_example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/misc_examples/spherical_harmonics_example
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
