@@ -124,22 +124,6 @@ The effects of eddy currents due to inductive interaction with the shield is min
 
 
 
-
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    Calculating surface harmonics expansion...
-    Computing the laplacian matrix...
-    Computing the mass matrix...
-
-
-
-
 Set up target  points and plot geometry
 
 
@@ -178,15 +162,6 @@ Set up target  points and plot geometry
 
 
 
-
-
-.. image:: /auto_examples/publication_software/images/sphx_glr_pub_minimal_eddy_current_cylindrical_coil_design_001.png
-    :class: sphx-glr-single-img
-
-
-
-
-
 Compute C matrices that are used to compute the generated magnetic field
 
 
@@ -200,29 +175,6 @@ Compute C matrices that are used to compute the generated magnetic field
 
     shield.M_coupling = np.linalg.solve(-shield.inductance, mutual_inductance.T)
     secondary_C = shield.B_coupling(target_points) @ -shield.M_coupling
-
-
-
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    Estimating 69923 MiB required for 4764 by 4764 vertices...
-    Computing inductance matrix in 120 chunks (12469 MiB memory free),              when approx_far=True using more chunks is faster...
-    Computing triangle-coupling matrix
-    Computing the inductance matrix...
-    Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
-    Estimating 69923 MiB required for 4764 by 4764 vertices...
-    Computing inductance matrix in 120 chunks (12379 MiB memory free),              when approx_far=True using more chunks is faster...
-    Computing triangle-coupling matrix
-    Inductance matrix computation took 30.19 seconds.
-    Computing magnetic field coupling matrix, 4764 vertices by 672 target points... took 0.98 seconds.
-
-
 
 
 Create bfield specifications used when optimizing the coil geometry
@@ -291,21 +243,6 @@ Create bfield specifications used when optimizing the coil geometry
         )
 
 
-
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    Computing magnetic field coupling matrix, 4764 vertices by 672 target points... took 1.00 seconds.
-    Computing the resistance matrix...
-
-
-
-
 Run QP solver
 
 
@@ -325,92 +262,6 @@ Run QP solver
     from bfieldtools.mesh_conductor import StreamFunction
 
     shield.induced_s = StreamFunction(shield.M_coupling @ coil.s, shield)
-
-
-
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    Computing the inductance matrix...
-    Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
-    Estimating 69923 MiB required for 4764 by 4764 vertices...
-    Computing inductance matrix in 120 chunks (11778 MiB memory free),              when approx_far=True using more chunks is faster...
-    Computing triangle-coupling matrix
-    Inductance matrix computation took 30.22 seconds.
-    Pre-existing problem not passed, creating...
-    Passing parameters to problem...
-    Passing problem to solver...
-
-
-    Problem
-      Name                   :                 
-      Objective sense        : min             
-      Type                   : CONIC (conic optimization problem)
-      Constraints            : 16530           
-      Cones                  : 1               
-      Scalar variables       : 803             
-      Matrix variables       : 0               
-      Integer variables      : 0               
-
-    Optimizer started.
-    Problem
-      Name                   :                 
-      Objective sense        : min             
-      Type                   : CONIC (conic optimization problem)
-      Constraints            : 16530           
-      Cones                  : 1               
-      Scalar variables       : 803             
-      Matrix variables       : 0               
-      Integer variables      : 0               
-
-    Optimizer  - threads                : 8               
-    Optimizer  - solved problem         : the dual        
-    Optimizer  - Constraints            : 401
-    Optimizer  - Cones                  : 1
-    Optimizer  - Scalar variables       : 16530             conic                  : 402             
-    Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
-    Factor     - setup time             : 0.26              dense det. time        : 0.00            
-    Factor     - ML order time          : 0.00              GP order time          : 0.00            
-    Factor     - nonzeros before factor : 8.06e+04          after factor           : 8.06e+04        
-    Factor     - dense dim.             : 0                 flops                  : 1.34e+09        
-    ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
-    0   3.2e+01  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  1.54  
-    1   1.7e+01  5.2e-01  1.2e+00  -6.51e-01  8.755235291e+01   8.717745151e+01   5.2e-01  1.61  
-    2   1.0e+01  3.2e-01  7.5e-01  -3.65e-01  3.120153253e+02   3.119964808e+02   3.2e-01  1.69  
-    3   7.2e+00  2.2e-01  5.4e-01  -9.84e-02  6.857677666e+02   6.859575059e+02   2.2e-01  1.77  
-    4   5.5e+00  1.7e-01  4.3e-01  -2.59e-01  1.163962871e+03   1.164387060e+03   1.7e-01  1.84  
-    5   1.9e+00  5.8e-02  1.5e-01  -2.36e-01  7.480098288e+03   7.481027404e+03   5.8e-02  1.93  
-    6   6.8e-01  2.1e-02  4.7e-02  1.04e-01   1.627369627e+04   1.627454019e+04   2.1e-02  2.00  
-    7   3.5e-01  1.1e-02  1.9e-02  7.70e-01   2.132852436e+04   2.132909581e+04   1.1e-02  2.12  
-    8   3.2e-01  9.8e-03  1.7e-02  5.09e-01   2.209800849e+04   2.209853836e+04   9.8e-03  2.19  
-    9   1.5e-01  4.5e-03  5.9e-03  6.46e-01   2.619385305e+04   2.619417789e+04   4.5e-03  2.27  
-    10  4.2e-02  1.3e-03  1.1e-03  7.82e-01   2.972842030e+04   2.972856479e+04   1.3e-03  2.39  
-    11  2.2e-02  6.8e-04  4.5e-04  8.03e-01   3.075144691e+04   3.075153484e+04   6.8e-04  2.46  
-    12  8.2e-04  2.5e-05  3.8e-06  8.85e-01   3.207619890e+04   3.207620363e+04   2.5e-05  2.56  
-    13  1.4e-04  4.2e-06  2.6e-07  9.95e-01   3.213108642e+04   3.213108726e+04   4.2e-06  2.63  
-    14  1.2e-05  1.4e-08  5.1e-09  9.99e-01   3.214221329e+04   3.214221325e+04   1.4e-08  2.82  
-    15  8.9e-06  1.1e-08  3.0e-09  1.00e+00   3.214222285e+04   3.214222283e+04   1.1e-08  2.98  
-    16  1.1e-06  5.4e-09  3.8e-10  1.00e+00   3.214223722e+04   3.214223722e+04   5.4e-09  3.15  
-    17  1.1e-06  5.4e-09  3.8e-10  1.00e+00   3.214223722e+04   3.214223722e+04   5.4e-09  3.37  
-    18  1.1e-06  5.4e-09  3.8e-10  1.00e+00   3.214223722e+04   3.214223722e+04   5.4e-09  3.59  
-    19  6.4e-06  4.1e-09  7.2e-11  1.00e+00   3.214224082e+04   3.214224082e+04   4.1e-09  3.75  
-    20  6.4e-06  4.1e-09  7.2e-11  1.00e+00   3.214224082e+04   3.214224082e+04   4.1e-09  3.98  
-    21  6.4e-06  4.1e-09  7.2e-11  1.00e+00   3.214224082e+04   3.214224082e+04   4.1e-09  4.20  
-    Optimizer terminated. Time: 4.55    
-
-
-    Interior-point solution summary
-      Problem status  : PRIMAL_AND_DUAL_FEASIBLE
-      Solution status : OPTIMAL
-      Primal.  obj: 3.2142240817e+04    nrm: 6e+04    Viol.  con: 6e-08    var: 0e+00    cones: 0e+00  
-      Dual.    obj: 3.2142240817e+04    nrm: 4e+05    Viol.  con: 0e+00    var: 3e-09    cones: 0e+00  
-
-
 
 
 Plot coil windings and target points
@@ -469,13 +320,55 @@ Plot coil windings and target points
 
 
 
+Plot cross-section of magnetic field and magnetic potential of the discretized loops
 
 
-.. image:: /auto_examples/publication_software/images/sphx_glr_pub_minimal_eddy_current_cylindrical_coil_design_002.png
-    :class: sphx-glr-single-img
+.. code-block:: default
 
 
 
+    import matplotlib.pyplot as plt
+
+    x = y = np.linspace(-1, 1, 40)
+    X, Y = np.meshgrid(x, y, indexing="ij")
+
+
+    points = np.zeros((X.flatten().shape[0], 3))
+    points[:, 0] = X.flatten()
+    points[:, 1] = Y.flatten()
+
+    B = coil.B_coupling(points) @ coil.s
+
+
+    mlab.quiver3d(*points.T, *B.T)
+
+    # U = U.reshape(x.shape[0], y.shape[0])
+    # B = B.T[:2].reshape(2, x.shape[0], y.shape[0])
+
+    # from bfieldtools.viz import plot_cross_section
+
+    # lw = np.sqrt(B[0] ** 2 + B[1] ** 2)
+
+    # lw = 2 * lw / np.max(lw)
+
+    # plot_cross_section(X, Y, U, log=False, contours=False)
+
+    # seed_points = points[:, :2] * 0.3
+
+    # plt.streamplot(
+    #     x,
+    #     y,
+    #     B[0],
+    #     B[1],
+    #     density=2,
+    #     linewidth=lw,
+    #     color="k",
+    #     integration_direction="both",
+    #     start_points=seed_points,
+    # )
+
+
+    # plt.tight_layout()
 
 
 For comparison, let's see how the coils look when we ignore the conducting shield
@@ -540,73 +433,23 @@ For comparison, let's see how the coils look when we ignore the conducting shiel
 
 
 
-.. image:: /auto_examples/publication_software/images/sphx_glr_pub_minimal_eddy_current_cylindrical_coil_design_003.png
-    :class: sphx-glr-single-img
+.. code-block:: default
 
 
-.. rst-class:: sphx-glr-script-out
+    import matplotlib.pyplot as plt
 
- Out:
-
- .. code-block:: none
-
-    Pre-existing problem not passed, creating...
-    Passing parameters to problem...
-    Passing problem to solver...
+    x = y = np.linspace(-1, 1, 40)
+    X, Y = np.meshgrid(x, y, indexing="ij")
 
 
-    Problem
-      Name                   :                 
-      Objective sense        : min             
-      Type                   : CONIC (conic optimization problem)
-      Constraints            : 4434            
-      Cones                  : 1               
-      Scalar variables       : 803             
-      Matrix variables       : 0               
-      Integer variables      : 0               
+    points = np.zeros((X.flatten().shape[0], 3))
+    points[:, 0] = X.flatten()
+    points[:, 1] = Y.flatten()
 
-    Optimizer started.
-    Problem
-      Name                   :                 
-      Objective sense        : min             
-      Type                   : CONIC (conic optimization problem)
-      Constraints            : 4434            
-      Cones                  : 1               
-      Scalar variables       : 803             
-      Matrix variables       : 0               
-      Integer variables      : 0               
-
-    Optimizer  - threads                : 8               
-    Optimizer  - solved problem         : the dual        
-    Optimizer  - Constraints            : 401
-    Optimizer  - Cones                  : 1
-    Optimizer  - Scalar variables       : 4434              conic                  : 402             
-    Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
-    Factor     - setup time             : 0.06              dense det. time        : 0.00            
-    Factor     - ML order time          : 0.00              GP order time          : 0.00            
-    Factor     - nonzeros before factor : 8.06e+04          after factor           : 8.06e+04        
-    Factor     - dense dim.             : 0                 flops                  : 3.67e+08        
-    ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
-    0   3.2e+01  1.0e+00  2.0e+00  0.00e+00   0.000000000e+00   -1.000000000e+00  1.0e+00  0.37  
-    1   2.5e+01  7.8e-01  2.4e-01  2.19e+00   3.606895285e+01   3.532195174e+01   7.8e-01  0.39  
-    2   1.4e+00  4.2e-02  6.7e-03  1.32e+00   4.778977359e+01   4.776570562e+01   4.2e-02  0.42  
-    3   9.6e-02  3.0e-03  8.7e-05  1.06e+00   4.681593779e+01   4.681405007e+01   3.0e-03  0.45  
-    4   1.9e-02  5.8e-04  8.8e-06  1.00e+00   4.676836958e+01   4.676801715e+01   5.8e-04  0.47  
-    5   1.7e-04  5.1e-06  8.1e-09  1.00e+00   4.677179327e+01   4.677179029e+01   5.1e-06  0.50  
-    6   6.2e-06  1.9e-07  5.6e-11  1.00e+00   4.677191103e+01   4.677191092e+01   1.9e-07  0.53  
-    7   3.1e-06  9.5e-08  2.0e-11  1.00e+00   4.677191365e+01   4.677191360e+01   9.5e-08  0.58  
-    8   1.5e-06  4.8e-08  5.7e-12  1.00e+00   4.677191496e+01   4.677191494e+01   4.8e-08  0.62  
-    9   7.7e-07  2.4e-08  1.2e-12  1.00e+00   4.677191562e+01   4.677191562e+01   2.4e-08  0.66  
-    Optimizer terminated. Time: 0.68    
+    B = coil.B_coupling(points) @ coil.unshielded_s
 
 
-    Interior-point solution summary
-      Problem status  : PRIMAL_AND_DUAL_FEASIBLE
-      Solution status : OPTIMAL
-      Primal.  obj: 4.6771915620e+01    nrm: 9e+01    Viol.  con: 8e-09    var: 0e+00    cones: 0e+00  
-      Dual.    obj: 4.6771915616e+01    nrm: 4e+01    Viol.  con: 1e-07    var: 5e-10    cones: 0e+00  
-
-
+    mlab.quiver3d(*points.T, *B.T)
 
 
 Finally, let's compare the time-courses
@@ -792,17 +635,11 @@ Finally, let's compare the time-courses
             mlab.close()
 
 
-
-
-
-
-
-
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 3 minutes  2.491 seconds)
+   **Total running time of the script:** ( 0 minutes  0.000 seconds)
 
-**Estimated memory usage:**  9135 MB
+**Estimated memory usage:**  0 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_software_pub_minimal_eddy_current_cylindrical_coil_design.py:
