@@ -338,6 +338,26 @@ Examples of the usage of different parts of bfieldtools
    :hidden:
 
    /auto_examples/misc_examples/spherical_harmonics_example
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The example is based on the following integral equation of  a piecewise harmonic potential U on...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/misc_examples/images/thumb/sphx_glr_linear_medium_bem_thumb.png
+
+     :ref:`sphx_glr_auto_examples_misc_examples_linear_medium_bem.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/misc_examples/linear_medium_bem
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

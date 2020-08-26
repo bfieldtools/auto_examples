@@ -15,6 +15,54 @@ Figure 2: Surface harmonics modes
 First 15 surface harmonics of a triangle mesh. The index (and spatial frequency) increases from left to right, row by row. The hole and outer boundary have zero tangential derivative. The mesh discretization is shown in the magnified inset to the right.
 
 
+
+.. rst-class:: sphx-glr-horizontal
+
+
+    *
+
+      .. image:: /auto_examples/publication_software/images/sphx_glr_plot_suhmodes_001.png
+            :class: sphx-glr-multi-img
+
+    *
+
+      .. image:: /auto_examples/publication_software/images/sphx_glr_plot_suhmodes_002.png
+            :class: sphx-glr-multi-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Calculating surface harmonics expansion...
+    Computing the laplacian matrix...
+    Computing the mass matrix...
+    0 0
+    1 0
+    2 0
+    0 1
+    1 1
+    2 1
+    0 2
+    1 2
+    2 2
+    0 3
+    1 3
+    2 3
+    0 4
+    1 4
+    2 4
+
+
+
+
+
+
+|
+
+
 .. code-block:: default
 
     from bfieldtools.mesh_conductor import MeshConductor
@@ -114,9 +162,9 @@ First 15 surface harmonics of a triangle mesh. The index (and spatial frequency)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
+   **Total running time of the script:** ( 0 minutes  1.400 seconds)
 
-**Estimated memory usage:**  0 MB
+**Estimated memory usage:**  29 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_software_plot_suhmodes.py:

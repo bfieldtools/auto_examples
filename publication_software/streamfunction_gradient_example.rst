@@ -46,8 +46,8 @@ An example stream function (red--blue colormap) and its rotated gradient, i.e. t
     from bfieldtools.mesh_calculus import gradient
     import numpy as np
 
-    SAVE = False
-    SAVE_DIR = "."
+    SAVE = True
+    SAVE_DIR = "./Streamfunction gradient/"
 
 
     c = MeshConductor(
@@ -113,26 +113,26 @@ An example stream function (red--blue colormap) and its rotated gradient, i.e. t
     vectors.glyph.glyph.scale_factor = 0.6
     f.scene.z_plus_view()
 
-
+    #
     module_manager2 = vectors.module_manager
-    module_manager2.scalar_lut_manager.scalar_bar_representation.maximum_size = np.array(
-        [100000, 100000]
-    )
-    module_manager2.scalar_lut_manager.scalar_bar_representation.minimum_size = np.array(
-        [1, 1]
-    )
-    module_manager2.scalar_lut_manager.scalar_bar_representation.position = np.array(
-        [0.82, 0.1]
-    )
-    module_manager2.scalar_lut_manager.scalar_bar_representation.position2 = np.array(
-        [0.17, 0.8]
-    )
-    module_manager2.scalar_lut_manager.show_scalar_bar = True
-    module_manager2.scalar_lut_manager.show_legend = True
-    module_manager2.scalar_lut_manager.scalar_bar.height = 0.8
-    module_manager2.scalar_lut_manager.scalar_bar.position = np.array([0.82, 0.1])
-    module_manager2.scalar_lut_manager.scalar_bar.position2 = np.array([0.17, 0.8])
-    module_manager2.scalar_lut_manager.scalar_bar.width = 0.17
+    # module_manager2.scalar_lut_manager.scalar_bar_representation.maximum_size = np.array(
+    #    [100000, 100000]
+    # )
+    # module_manager2.scalar_lut_manager.scalar_bar_representation.minimum_size = np.array(
+    #    [1, 1]
+    # )
+    # module_manager2.scalar_lut_manager.scalar_bar_representation.position = np.array(
+    #    [0.82, 0.1]
+    # )
+    # module_manager2.scalar_lut_manager.scalar_bar_representation.position2 = np.array(
+    #    [0.17, 0.8]
+    # )
+    # module_manager2.scalar_lut_manager.show_scalar_bar = True
+    # module_manager2.scalar_lut_manager.show_legend = True
+    # module_manager2.scalar_lut_manager.scalar_bar.height = 0.8
+    # module_manager2.scalar_lut_manager.scalar_bar.position = np.array([0.82, 0.1])
+    # module_manager2.scalar_lut_manager.scalar_bar.position2 = np.array([0.17, 0.8])
+    # module_manager2.scalar_lut_manager.scalar_bar.width = 0.17
 
     f.scene.camera.position = [
         -0.3696892487983681,
@@ -187,7 +187,9 @@ An example stream function (red--blue colormap) and its rotated gradient, i.e. t
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.904 seconds)
+   **Total running time of the script:** ( 0 minutes  0.804 seconds)
+
+**Estimated memory usage:**  35 MB
 
 
 .. _sphx_glr_download_auto_examples_publication_software_streamfunction_gradient_example.py:
